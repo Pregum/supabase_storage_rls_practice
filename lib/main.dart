@@ -13,13 +13,20 @@ Future<void> main() async {
     MyProviderObserver(),
   ]);
   final client = await container.read(supabaseServiceFutureProvider.future);
-  final supabaseContainer = ProviderContainer(parent: container, overrides: [
+  final serviceContainer = ProviderContainer(parent: container, overrides: [
     supabaseService.overrideWithValue(client),
   ]);
 
+  final repositoryContainer = ProviderContainer(
+    parent: serviceContainer,
+    overrides: [
+      // supabaseAuthRepositoryProvider.overrideWith(() => )),
+    ],
+  );
+
   runApp(
     UncontrolledProviderScope(
-      container: supabaseContainer,
+      container: repositoryContainer,
       child: const MyApp(),
     ),
   );

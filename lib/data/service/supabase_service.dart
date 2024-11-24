@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'supabase_service.g.dart';
 
-@riverpod
+@Riverpod(keepAlive: true)
 /// [SupabaseClient] の初期化を行う FutureProvider
 class SupabaseServiceFuture extends _$SupabaseServiceFuture {
   @override

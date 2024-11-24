@@ -2,12 +2,40 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:supabase_storage_rls_practice/config/logger.dart';
+import 'package:supabase_storage_rls_practice/data/repository/supabase_auth_repository.dart';
+import 'package:supabase_storage_rls_practice/ui/hooks/use_easy_try_catcher.dart';
 
 enum UserRole {
   userA,
   userB,
   guest,
   anonymous;
+
+  String get name {
+    return switch (this) {
+      UserRole.userA => 'User A',
+      UserRole.userB => 'User B',
+      UserRole.guest => 'Guest',
+      UserRole.anonymous => 'Anonymous'
+    };
+  }
+
+  String get email {
+    return switch (this) {
+      UserRole.userA => 'usera@example.com',
+      UserRole.userB => 'userb@example.com',
+      _ => throw UnimplementedError(),
+    };
+  }
+
+  String get password {
+    return switch (this) {
+      UserRole.userA => 'userA123456',
+      UserRole.userB => 'userB123456',
+      _ => throw UnimplementedError(),
+    };
+  }
 }
 
 @RoutePage()
@@ -16,7 +44,7 @@ class LoginPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final radioVal = useState<UserRole>(UserRole.userA);
+    final selectedUser = useState<UserRole>(UserRole.userA);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,18 +62,35 @@ class LoginPage extends HookConsumerWidget {
               for (final UserRole role in UserRole.values)
                 RadioListTile<UserRole>(
                   value: role,
-                  groupValue: radioVal.value,
+                  groupValue: selectedUser.value,
                   title: Text(role.name),
                   onChanged: (value) {
-                    radioVal.value = value!;
+                    selectedUser.value = value!;
                   },
                 ),
               ElevatedButton(
                 child: const Text('ログイン'),
                 onPressed: () async {
-                  // TODO: ログイン処理を実装する
-                  // ref.read(userRoleProvider).state = radioVal.value;
-                  // AutoRouter.of(context).replace(const MyHomeRoute());
+                  final authRepository =
+                      ref.read(supabaseAuthRepositoryProvider.notifier);
+                  var user = selectedUser.value;
+
+                  try {
+                    await authRepository.signInWithPassword(
+                        email: user.email, password: user.password);
+                  } on Exception catch (e) {
+                    logger.e(e);
+                  }
+
+                  // useTryCatch(
+                  //   tryFunc: () async {
+                  //     await authRepository.signInWithPassword(
+                  //         email: user.email, password: user.password);
+                  //   },
+                  //   onError: (error, stackTrace) {
+                  //     print('ログインエラー: $error');
+                  //   },
+                  // );
                 },
               ),
             ],
