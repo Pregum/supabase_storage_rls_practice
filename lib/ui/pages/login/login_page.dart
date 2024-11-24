@@ -42,7 +42,7 @@ class LoginPage extends HookConsumerWidget {
                 ),
               ElevatedButton(
                 child: const Text('ログイン'),
-                onPressed: () {
+                onPressed: () async {
                   // TODO: ログイン処理を実装する
                   // ref.read(userRoleProvider).state = radioVal.value;
                   // AutoRouter.of(context).replace(const MyHomeRoute());
