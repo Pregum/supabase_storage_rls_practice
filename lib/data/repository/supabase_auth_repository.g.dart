@@ -7,7 +7,7 @@ part of 'supabase_auth_repository.dart';
 // **************************************************************************
 
 String _$supabaseAuthRepositoryHash() =>
-    r'754ff088a3a8c82f4b77e8c9bc2877bf9d2cfb04';
+    r'2ca6ff46d97e48cdd4ffc2f77072fa9baffd9029';
 
 /// 依存providerを指定しないと[_service] メンバが初期化されない
 ///

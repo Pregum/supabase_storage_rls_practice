@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:supabase_storage_rls_practice/data/repository/supabase_auth_repository.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
+import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
 
 @RoutePage()
 class SettingPage extends HookConsumerWidget {
@@ -39,7 +41,14 @@ class SettingPage extends HookConsumerWidget {
                 const Gap(24),
                 FilledButton(
                   child: const Text('ログアウト'),
-                  onPressed: () {},
+                  onPressed: () async {
+                    final authRepository =
+                        ref.read(supabaseAuthRepositoryProvider);
+                    await authRepository.logout();
+                    if (context.mounted) {
+                      context.router.replaceAll([const LoginRoute()]);
+                    }
+                  },
                 ),
                 const Gap(24),
               ],

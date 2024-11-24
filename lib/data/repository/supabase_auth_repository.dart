@@ -28,4 +28,9 @@ class SupabaseAuthRepository extends _$SupabaseAuthRepository {
       password: password,
     );
   }
+
+  /// ログアウトを行う
+  Future<void> logout({SignOutScope scope = SignOutScope.local}) async {
+    await _service.auth.signOut(scope: scope);
+  }
 }
