@@ -19,11 +19,11 @@ class SupabaseAuthRepository extends _$SupabaseAuthRepository {
   }
 
   /// メールアドレスとパスワードでサインインする
-  Future<void> signInWithPassword({
+  Future<AuthResponse> signInWithPassword({
     required String email,
     required String password,
   }) async {
-    await _service.auth.signInWithPassword(
+    return await _service.auth.signInWithPassword(
       email: email,
       password: password,
     );
