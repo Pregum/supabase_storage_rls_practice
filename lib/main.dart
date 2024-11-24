@@ -14,19 +14,14 @@ Future<void> main() async {
   ]);
   final client = await container.read(supabaseServiceFutureProvider.future);
   final serviceContainer = ProviderContainer(parent: container, overrides: [
-    supabaseService.overrideWithValue(client),
+    supabaseServiceProvider.overrideWithValue(client),
   ]);
-
-  final repositoryContainer = ProviderContainer(
-    parent: serviceContainer,
-    overrides: [
-      // supabaseAuthRepositoryProvider.overrideWith(() => )),
-    ],
-  );
+  // final s = serviceContainer.read(supabaseServiceProvider);
+  // logger.d('s: $s');
 
   runApp(
     UncontrolledProviderScope(
-      container: repositoryContainer,
+      container: serviceContainer,
       child: const MyApp(),
     ),
   );

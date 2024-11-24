@@ -1,10 +1,11 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'supabase_service.g.dart';
 
-@Riverpod(keepAlive: true)
 /// [SupabaseClient] の初期化を行う FutureProvider
+@riverpod
 class SupabaseServiceFuture extends _$SupabaseServiceFuture {
   @override
   Future<SupabaseClient> build() async {
@@ -25,6 +26,7 @@ class SupabaseServiceFuture extends _$SupabaseServiceFuture {
 
 /// [SupabaseClient] の提供を行う Provider
 /// 実際の初期化は [SupabaseServiceFuture] で行う
-final supabaseService = Provider<SupabaseClient>((ref) {
+@riverpod
+SupabaseClient supabaseService(Ref ref) {
   throw UnimplementedError();
-});
+}

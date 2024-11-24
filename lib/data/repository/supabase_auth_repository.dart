@@ -1,16 +1,20 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 
 part 'supabase_auth_repository.g.dart';
 
-@riverpod
+/// 依存providerを指定しないと[_service] メンバが初期化されない
+@Riverpod(dependencies: [supabaseService])
 class SupabaseAuthRepository extends _$SupabaseAuthRepository {
   late final SupabaseClient _service;
+
   @override
   SupabaseAuthRepository build() {
-    final supabase = ref.read(supabaseService);
-    _service = supabase;
+    logger.d('SupabaseAuthRepository build');
+    final service = ref.read(supabaseServiceProvider);
+    _service = service;
     return this;
   }
 

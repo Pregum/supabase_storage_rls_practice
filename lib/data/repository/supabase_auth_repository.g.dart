@@ -7,9 +7,11 @@ part of 'supabase_auth_repository.dart';
 // **************************************************************************
 
 String _$supabaseAuthRepositoryHash() =>
-    r'3cb42e001516784dc2fbba54a0f75e5159802cdf';
+    r'932ab926bbb27ba53b5d0bf1d16ed3c5ce084640';
 
-/// See also [SupabaseAuthRepository].
+/// 依存providerを指定しないと[_service] メンバが初期化されない
+///
+/// Copied from [SupabaseAuthRepository].
 @ProviderFor(SupabaseAuthRepository)
 final supabaseAuthRepositoryProvider = AutoDisposeNotifierProvider<
     SupabaseAuthRepository, SupabaseAuthRepository>.internal(
@@ -18,8 +20,11 @@ final supabaseAuthRepositoryProvider = AutoDisposeNotifierProvider<
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$supabaseAuthRepositoryHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
+  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
+  allTransitiveDependencies: <ProviderOrFamily>{
+    supabaseServiceProvider,
+    ...?supabaseServiceProvider.allTransitiveDependencies
+  },
 );
 
 typedef _$SupabaseAuthRepository = AutoDisposeNotifier<SupabaseAuthRepository>;
