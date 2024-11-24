@@ -1,0 +1,4 @@
+enum BucketAccessibility {
+  private,
+  public,
+}
