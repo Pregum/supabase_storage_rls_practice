@@ -4,7 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_auth_repository.dart';
-import 'package:supabase_storage_rls_practice/ui/hooks/use_easy_try_catcher.dart';
+import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
+import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
 
 enum UserRole {
   userA,
@@ -80,6 +81,14 @@ class LoginPage extends HookConsumerWidget {
                     final result = await authRepository.signInWithPassword(
                         email: user.email, password: user.password);
                     logger.i('result: $result');
+                    if (context.mounted) {
+                      logger.i('routes: ${context.router.routeData.path}');
+                      context.router.replaceAll([
+                        const PlayGroundNavigationRoute(children: [
+                          PlayGroundRoute(),
+                        ]),
+                      ]);
+                    }
                   } catch (e) {
                     logger.e(e);
                   }

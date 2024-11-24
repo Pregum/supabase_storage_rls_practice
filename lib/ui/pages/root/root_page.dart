@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
@@ -12,39 +13,48 @@ class RootPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(
-      supabaseServiceProvider.select((value) => value.auth.currentUser),
-      (prev, next) {
-        logger.d('prev: $prev, next: $next');
-        if (next == null) {
-          logger.i('ログインしていないのでログイン画面に遷移します');
-          context.router.push(const LoginRoute());
-        } else {
-          logger.i('ログイン済みなのでホーム画面に遷移します');
-          context.router.push(const PlayGroundRoute());
-        }
-      },
-      onError: (error, stackTrace) {
-        logger.e('error: $error, stackTrace: $stackTrace');
-        context.router
-            .pushAndPopUntil(const LoginRoute(), predicate: (route) => false);
-      },
-    );
-
     useEffect(() {
       logger.i('RootPage#useEffect');
+      final onChangedStream = ref.read(supabaseServiceProvider
+          .select((value) => value.auth.onAuthStateChange));
+      final subscription = onChangedStream.listen(
+        (authState) {
+          if (authState.event == AuthChangeEvent.signedIn) {
+            final session = authState.session;
+            if (session == null) {
+              throw Exception('session is null');
+            }
+            logger.i('user.email: ${session.user.email} のユーザーでログインしました');
+            if (context.mounted) {
+              logger.i('routes: ${context.router.routeData.path}');
+              context.router.replaceAll([
+                const PlayGroundNavigationRoute(children: [
+                  PlayGroundRoute(),
+                ]),
+              ]);
+            }
+          } else if (authState.event == AuthChangeEvent.signedOut) {
+            logger.i('ログアウトしました, event: ${authState.event}');
+          }
+        },
+      );
 
-      final next = ref.read(
+      final currentUser = ref.read(
           supabaseServiceProvider.select((value) => value.auth.currentUser));
-      logger.d(' next: $next');
-      if (next == null) {
+      if (currentUser == null) {
         logger.i('ログインしていないのでログイン画面に遷移します');
         context.router.push(const LoginRoute());
       } else {
         logger.i('ログイン済みなのでホーム画面に遷移します');
-        context.router.push(const PlayGroundRoute());
+        context.router.replaceAll([
+          const PlayGroundNavigationRoute(children: [
+            PlayGroundRoute(),
+          ]),
+        ]);
       }
-      return () {};
+      return () {
+        subscription.cancel();
+      };
     }, []);
 
     return const AutoRouter();
