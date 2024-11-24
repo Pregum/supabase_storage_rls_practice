@@ -41,6 +41,7 @@ dependencies:
   hooks_riverpod: ^2.6.1
   auto_route: ^9.2.2
   supabase_flutter: ^2.8.1
+  logger: ^2.5.0
 
 dev_dependencies:
   flutter_test:
