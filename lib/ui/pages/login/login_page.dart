@@ -71,16 +71,19 @@ class LoginPage extends HookConsumerWidget {
               ElevatedButton(
                 child: const Text('ログイン'),
                 onPressed: () async {
+                  logger.d('login start');
                   final authRepository =
                       ref.read(supabaseAuthRepositoryProvider.notifier);
                   var user = selectedUser.value;
 
                   try {
-                    await authRepository.signInWithPassword(
+                    final result = await authRepository.signInWithPassword(
                         email: user.email, password: user.password);
-                  } on Exception catch (e) {
+                    logger.i('result: $result');
+                  } catch (e) {
                     logger.e(e);
                   }
+                  logger.d('login end');
 
                   // useTryCatch(
                   //   tryFunc: () async {
