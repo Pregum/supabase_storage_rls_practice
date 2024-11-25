@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
-import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/domain/model/storage_command_v2.dart';
 import 'package:supabase_storage_rls_practice/domain/model/upload_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/default_parameter_area.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_parameter_area.dart';
@@ -15,27 +15,19 @@ class PlayGroundPanel extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final operationType = useState<OperationType>(OperationType.upload);
-    final parameter = useMemoized<StorageCommandParameter>(
+    final parameter = useMemoized<StorageCommandParameterV2>(
         () => switch (operationType.value) {
-              OperationType.upload => UploadParameter(
+              OperationType.upload => const UploadCommandParameterV2(
                   sourceFilePath: '',
                   destFilePath: '',
-                  bucketKind: BucketKind.a,
-                  operationType: operationType.value,
                 ),
-              OperationType.update => UpdateParameter(
+              OperationType.update => const UpdateCommandParameterV2(
                   sourceFilePath: '',
                   destFilePath: '',
-                  bucketKind: BucketKind.a,
-                  operationType: operationType.value,
                 ),
-              //  OperationType.delete =>
-              //    DeleteParameter(),
-              _ => UpdateParameter(
+              _ => const UpdateCommandParameterV2(
                   sourceFilePath: '',
                   destFilePath: '',
-                  bucketKind: BucketKind.a,
-                  operationType: operationType.value,
                 ),
             },
         [operationType.value]);
@@ -72,10 +64,9 @@ class PlayGroundPanel extends HookConsumerWidget {
                 },
               ),
               switch (parameter) {
-                UploadParameter() => UploadParameterArea(
+                UploadCommandParameterV2() => UploadParameterArea(
                     parameter: parameter,
                   ),
-                UpdateParameter() => const DefaultParameterArea(),
                 _ => const DefaultParameterArea(),
               },
               FilledButton(child: const Text('実行'), onPressed: () {}),

@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
-import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
 
 part 'storage_command_v2.freezed.dart';
 
@@ -17,8 +16,9 @@ class UploadCommandParameterV2
   const UploadCommandParameterV2._();
 
   const factory UploadCommandParameterV2({
-    required String sourceFilePath,
-    required String destFilePath,
+    @Default('') String sourceFilePath,
+    @Default('') String destFilePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
   }) = _UploadCommandParameterV2;
 
   @override
@@ -64,13 +64,13 @@ class UpdateCommandParameterV2
   }
 }
 
-void test() {
-  const foo =
-      UploadCommandParameterV2(sourceFilePath: 'hoge', destFilePath: 'hoge');
-  switch (foo) {
-    case UploadCommandParameterV2():
-      break;
-    case UpdateCommandParameterV2():
-      break;
-  }
-}
+// void test() {
+//   const foo =
+//       UploadCommandParameterV2(sourceFilePath: 'hoge', destFilePath: 'hoge');
+//   switch (foo) {
+//     case UploadCommandParameterV2():
+//       break;
+//     case UpdateCommandParameterV2():
+//       break;
+//   }
+// }

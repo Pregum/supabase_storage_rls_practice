@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$UploadCommandParameterV2 {
   String get sourceFilePath => throw _privateConstructorUsedError;
   String get destFilePath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
 
   /// Create a copy of UploadCommandParameterV2
   /// with the given fields replaced by the non-null parameter values.
@@ -32,7 +33,8 @@ abstract class $UploadCommandParameterV2CopyWith<$Res> {
           $Res Function(UploadCommandParameterV2) then) =
       _$UploadCommandParameterV2CopyWithImpl<$Res, UploadCommandParameterV2>;
   @useResult
-  $Res call({String sourceFilePath, String destFilePath});
+  $Res call(
+      {String sourceFilePath, String destFilePath, BucketKind bucketKind});
 }
 
 /// @nodoc
@@ -53,6 +55,7 @@ class _$UploadCommandParameterV2CopyWithImpl<$Res,
   $Res call({
     Object? sourceFilePath = null,
     Object? destFilePath = null,
+    Object? bucketKind = null,
   }) {
     return _then(_value.copyWith(
       sourceFilePath: null == sourceFilePath
@@ -63,6 +66,10 @@ class _$UploadCommandParameterV2CopyWithImpl<$Res,
           ? _value.destFilePath
           : destFilePath // ignore: cast_nullable_to_non_nullable
               as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
     ) as $Val);
   }
 }
@@ -76,7 +83,8 @@ abstract class _$$UploadCommandParameterV2ImplCopyWith<$Res>
       __$$UploadCommandParameterV2ImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String sourceFilePath, String destFilePath});
+  $Res call(
+      {String sourceFilePath, String destFilePath, BucketKind bucketKind});
 }
 
 /// @nodoc
@@ -96,6 +104,7 @@ class __$$UploadCommandParameterV2ImplCopyWithImpl<$Res>
   $Res call({
     Object? sourceFilePath = null,
     Object? destFilePath = null,
+    Object? bucketKind = null,
   }) {
     return _then(_$UploadCommandParameterV2Impl(
       sourceFilePath: null == sourceFilePath
@@ -106,6 +115,10 @@ class __$$UploadCommandParameterV2ImplCopyWithImpl<$Res>
           ? _value.destFilePath
           : destFilePath // ignore: cast_nullable_to_non_nullable
               as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
     ));
   }
 }
@@ -114,17 +127,24 @@ class __$$UploadCommandParameterV2ImplCopyWithImpl<$Res>
 
 class _$UploadCommandParameterV2Impl extends _UploadCommandParameterV2 {
   const _$UploadCommandParameterV2Impl(
-      {required this.sourceFilePath, required this.destFilePath})
+      {this.sourceFilePath = '',
+      this.destFilePath = '',
+      this.bucketKind = BucketKind.a})
       : super._();
 
   @override
+  @JsonKey()
   final String sourceFilePath;
   @override
+  @JsonKey()
   final String destFilePath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
 
   @override
   String toString() {
-    return 'UploadCommandParameterV2(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath)';
+    return 'UploadCommandParameterV2(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath, bucketKind: $bucketKind)';
   }
 
   @override
@@ -135,11 +155,14 @@ class _$UploadCommandParameterV2Impl extends _UploadCommandParameterV2 {
             (identical(other.sourceFilePath, sourceFilePath) ||
                 other.sourceFilePath == sourceFilePath) &&
             (identical(other.destFilePath, destFilePath) ||
-                other.destFilePath == destFilePath));
+                other.destFilePath == destFilePath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sourceFilePath, destFilePath);
+  int get hashCode =>
+      Object.hash(runtimeType, sourceFilePath, destFilePath, bucketKind);
 
   /// Create a copy of UploadCommandParameterV2
   /// with the given fields replaced by the non-null parameter values.
@@ -153,14 +176,17 @@ class _$UploadCommandParameterV2Impl extends _UploadCommandParameterV2 {
 
 abstract class _UploadCommandParameterV2 extends UploadCommandParameterV2 {
   const factory _UploadCommandParameterV2(
-      {required final String sourceFilePath,
-      required final String destFilePath}) = _$UploadCommandParameterV2Impl;
+      {final String sourceFilePath,
+      final String destFilePath,
+      final BucketKind bucketKind}) = _$UploadCommandParameterV2Impl;
   const _UploadCommandParameterV2._() : super._();
 
   @override
   String get sourceFilePath;
   @override
   String get destFilePath;
+  @override
+  BucketKind get bucketKind;
 
   /// Create a copy of UploadCommandParameterV2
   /// with the given fields replaced by the non-null parameter values.
