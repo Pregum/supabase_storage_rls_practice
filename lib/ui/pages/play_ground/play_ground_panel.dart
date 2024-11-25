@@ -4,16 +4,41 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
+import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/domain/model/upload_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/default_parameter_area.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_parameter_area.dart';
 
 class PlayGroundPanel extends HookConsumerWidget {
   const PlayGroundPanel({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bucketKind = useState<BucketKind>(BucketKind.a);
     final operationType = useState<OperationType>(OperationType.upload);
-    final sourceFilePathController = useTextEditingController();
-    final destFilePathController = useTextEditingController();
+    final parameter = useMemoized<StorageCommandParameter>(
+        () => switch (operationType.value) {
+              OperationType.upload => UploadParameter(
+                  sourceFilePath: '',
+                  destFilePath: '',
+                  bucketKind: BucketKind.a,
+                  operationType: operationType.value,
+                ),
+              OperationType.update => UpdateParameter(
+                  sourceFilePath: '',
+                  destFilePath: '',
+                  bucketKind: BucketKind.a,
+                  operationType: operationType.value,
+                ),
+              //  OperationType.delete =>
+              //    DeleteParameter(),
+              _ => UpdateParameter(
+                  sourceFilePath: '',
+                  destFilePath: '',
+                  bucketKind: BucketKind.a,
+                  operationType: operationType.value,
+                ),
+            },
+        [operationType.value]);
 
     // TabBarを切り替えた時に画面の更新が走る為、画面情報を保持するために配置
     useAutomaticKeepAlive();
@@ -28,23 +53,6 @@ class PlayGroundPanel extends HookConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               const Gap(8),
-              const Text('bucketを選択してください'),
-              DropdownButton(
-                value: bucketKind.value,
-                items: [
-                  for (final bucketKind in BucketKind.values)
-                    DropdownMenuItem(
-                      value: bucketKind,
-                      child: Text(bucketKind.name),
-                    ),
-                ],
-                onChanged: (newValue) {
-                  if (newValue == null) {
-                    return;
-                  }
-                  bucketKind.value = newValue;
-                },
-              ),
               const Text('操作の種類'),
               DropdownButton(
                 value: operationType.value,
@@ -60,26 +68,16 @@ class PlayGroundPanel extends HookConsumerWidget {
                     return;
                   }
                   operationType.value = newValue;
+                  // parameter.value = parameter.value.copyWith(operationType: newValue);
                 },
               ),
-              TextField(
-                controller: sourceFilePathController,
-                onChanged: (value) => sourceFilePathController.text = value,
-                decoration: const InputDecoration(
-                  labelText: '保存ソースのファイルパス',
-                  hintText: '保存ソースのファイルパスを入力してください',
-                ),
-              ),
-              const Text('操作先のパス'),
-              TextField(
-                controller: destFilePathController,
-                onChanged: (value) => sourceFilePathController.text = value,
-                decoration: const InputDecoration(
-                  labelText: '保存先のファイルパス',
-                  hintText: '保存先のファイルパスを入力してください',
-                ),
-              ),
-              const Gap(24),
+              switch (parameter) {
+                UploadParameter() => UploadParameterArea(
+                    parameter: parameter,
+                  ),
+                UpdateParameter() => const DefaultParameterArea(),
+                _ => const DefaultParameterArea(),
+              },
               FilledButton(child: const Text('実行'), onPressed: () {}),
             ],
           ),

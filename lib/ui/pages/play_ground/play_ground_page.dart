@@ -52,8 +52,8 @@ class PlayGroundPage extends HookConsumerWidget {
                 // Container(
                 //   child: Text('プレイグラウンド'),
                 // ),
-                PlayGroundPanel(
-                  key: const PageStorageKey(0),
+                const PlayGroundPanel(
+                  key: PageStorageKey(0),
                 ),
                 Container(
                   key: const PageStorageKey(1),
