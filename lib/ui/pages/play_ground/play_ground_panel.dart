@@ -38,7 +38,10 @@ class PlayGroundPanel extends HookConsumerWidget {
       onTap: () => primaryFocus?.unfocus(),
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(
+            vertical: 8.0,
+            horizontal: 16.0,
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             mainAxisSize: MainAxisSize.min,
@@ -68,6 +71,7 @@ class PlayGroundPanel extends HookConsumerWidget {
                 _ => const DefaultParameterArea(),
               },
               FilledButton(child: const Text('実行'), onPressed: () {}),
+              const Gap(64),
             ],
           ),
         ),

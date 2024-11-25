@@ -28,6 +28,7 @@ class UploadOptionsForm extends HookConsumerWidget {
     return Form(
       child: Column(
         children: [
+          const Gap(24),
           const Text('bucketを選択してください'),
           DropdownButton(
             value: parameter.value.bucketKind,
@@ -46,6 +47,7 @@ class UploadOptionsForm extends HookConsumerWidget {
               parameter.value = parameter.value.copyWith(bucketKind: newValue);
             },
           ),
+          const Gap(24),
           const Text('アップロードファイルを選択してください'),
           DropdownButton<String>(
             value: parameter.value.sourceFilePath,
@@ -70,6 +72,7 @@ class UploadOptionsForm extends HookConsumerWidget {
               parameter.value.sourceFilePath,
               fit: BoxFit.cover,
             ),
+          const Gap(24),
           const Text('操作先のパス'),
           TextField(
             controller: destFilePathController,
