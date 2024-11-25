@@ -14,6 +14,7 @@ class PlayGroundPanel extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final operationType = useState<OperationType>(OperationType.upload);
     final parameter = useMemoized<StorageCommandParameter>(
+        // TODO: 後でfactoryに変更する
         () => switch (operationType.value) {
               OperationType.upload => const UploadCommandParameter(
                   sourceFilePath: '',
@@ -58,7 +59,6 @@ class PlayGroundPanel extends HookConsumerWidget {
                     return;
                   }
                   operationType.value = newValue;
-                  // parameter.value = parameter.value.copyWith(operationType: newValue);
                 },
               ),
               switch (parameter) {
