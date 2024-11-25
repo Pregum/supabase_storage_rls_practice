@@ -35,16 +35,22 @@ class UploadOptionsForm extends HookConsumerWidget {
               parameter.value = parameter.value.copyWith(bucketKind: newValue);
             },
           ),
-          TextField(
-            controller: sourceFilePathController,
-            onChanged: (value) {
-              sourceFilePathController.text = value;
-              parameter.value = parameter.value.copyWith(sourceFilePath: value);
+          const Text('アップロードファイルを選択してください'),
+          DropdownButton(
+            value: parameter.value.bucketKind,
+            items: [
+              for (final bucketKind in BucketKind.values)
+                DropdownMenuItem(
+                  value: bucketKind,
+                  child: Text(bucketKind.name),
+                ),
+            ],
+            onChanged: (newValue) {
+              if (newValue == null) {
+                return;
+              }
+              parameter.value = parameter.value.copyWith(bucketKind: newValue);
             },
-            decoration: const InputDecoration(
-              labelText: '保存ソースのファイルパス',
-              hintText: '保存ソースのファイルパスを入力してください',
-            ),
           ),
           const Text('操作先のパス'),
           TextField(
