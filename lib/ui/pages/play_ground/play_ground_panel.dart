@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
-import 'package:supabase_storage_rls_practice/domain/model/storage_command_v2.dart';
-import 'package:supabase_storage_rls_practice/domain/model/upload_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/default_parameter_area.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_parameter_area.dart';
 
@@ -15,17 +13,17 @@ class PlayGroundPanel extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final operationType = useState<OperationType>(OperationType.upload);
-    final parameter = useMemoized<StorageCommandParameterV2>(
+    final parameter = useMemoized<StorageCommandParameter>(
         () => switch (operationType.value) {
-              OperationType.upload => const UploadCommandParameterV2(
+              OperationType.upload => const UploadCommandParameter(
                   sourceFilePath: '',
                   destFilePath: '',
                 ),
-              OperationType.update => const UpdateCommandParameterV2(
+              OperationType.update => const UpdateCommandParameter(
                   sourceFilePath: '',
                   destFilePath: '',
                 ),
-              _ => const UpdateCommandParameterV2(
+              _ => const UpdateCommandParameter(
                   sourceFilePath: '',
                   destFilePath: '',
                 ),
@@ -64,7 +62,7 @@ class PlayGroundPanel extends HookConsumerWidget {
                 },
               ),
               switch (parameter) {
-                UploadCommandParameterV2() => UploadParameterArea(
+                UploadCommandParameter() => UploadParameterArea(
                     parameter: parameter,
                   ),
                 _ => const DefaultParameterArea(),

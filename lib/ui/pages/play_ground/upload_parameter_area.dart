@@ -3,15 +3,15 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
-import 'package:supabase_storage_rls_practice/domain/model/storage_command_v2.dart';
+import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 
 class UploadParameterArea extends HookConsumerWidget {
-  final UploadCommandParameterV2 parameter;
+  final UploadCommandParameter parameter;
   const UploadParameterArea({super.key, required this.parameter});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final parameter = useState<UploadCommandParameterV2>(this.parameter);
+    final parameter = useState<UploadCommandParameter>(this.parameter);
     final sourceFilePathController = useTextEditingController();
     final destFilePathController = useTextEditingController();
 
