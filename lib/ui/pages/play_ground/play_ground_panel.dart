@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/default_parameter_area.dart';
-import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_parameter_area.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_options_form.dart';
 
 class PlayGroundPanel extends HookConsumerWidget {
   const PlayGroundPanel({super.key});
@@ -62,7 +62,7 @@ class PlayGroundPanel extends HookConsumerWidget {
                 },
               ),
               switch (parameter) {
-                UploadCommandParameter() => UploadParameterArea(
+                UploadCommandParameter() => UploadOptionsForm(
                     parameter: parameter,
                   ),
                 _ => const DefaultParameterArea(),
