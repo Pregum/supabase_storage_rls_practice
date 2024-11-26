@@ -4,9 +4,9 @@ import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 part 'storage_command_parameter.freezed.dart';
 
 sealed class StorageCommandParameter {
-  void setup();
-  void execute();
-  void teardown();
+  Future<void> setup();
+  Future<void> execute();
+  Future<void> teardown();
 }
 
 // TODO: 後で別ファイルへ分ける
@@ -23,17 +23,16 @@ class UploadCommandParameter
   }) = _UploadCommandParameter;
 
   @override
-  void execute() {
-    // TODO: implement execute
+  Future<void> execute() async {
+    // uploadする処理を実装していく
   }
 
   @override
-  void setup() {
-    // TODO: implement setup
+  Future<void> setup() async {
   }
 
   @override
-  void teardown() {
+  Future<void> teardown() async {
     // TODO: implement teardown
   }
 }
@@ -51,17 +50,17 @@ class UpdateCommandParameter
   }) = _UpdateCommandParameter;
 
   @override
-  void execute() {
+  Future<void> execute() async {
     // TODO: implement execute
   }
 
   @override
-  void setup() {
+  Future<void> setup() async {
     // TODO: implement setup
   }
 
   @override
-  void teardown() {
+  Future<void> teardown() async {
     // TODO: implement teardown
   }
 }
