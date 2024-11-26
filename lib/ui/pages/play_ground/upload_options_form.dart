@@ -43,7 +43,6 @@ class UploadOptionsForm extends HookConsumerWidget {
             items: [
               for (final bucketKind in BucketKind.values)
                 DropdownMenuItem(
-                  key: ValueKey('bucket-$bucketKind'),
                   value: bucketKind,
                   child: Text(bucketKind.name),
                 ),
@@ -75,7 +74,7 @@ class UploadOptionsForm extends HookConsumerWidget {
                   parameter.value.copyWith(sourceFilePath: newValue);
             },
           ),
-          if (parameter.value.sourceFilePath.isNotEmpty)
+          if (path.extension(parameter.value.sourceFilePath) == '.png')
             Image.asset(
               parameter.value.sourceFilePath,
               fit: BoxFit.cover,

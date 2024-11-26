@@ -16,6 +16,19 @@ class $AssetsImagesGen {
   $AssetsImagesPngGen get png => const $AssetsImagesPngGen();
 }
 
+class $AssetsPdfGen {
+  const $AssetsPdfGen();
+
+  /// File path: assets/pdf/pdf1.pdf
+  String get pdf1 => 'assets/pdf/pdf1.pdf';
+
+  /// File path: assets/pdf/pdf2.pdf
+  String get pdf2 => 'assets/pdf/pdf2.pdf';
+
+  /// List of all assets
+  List<String> get values => [pdf1, pdf2];
+}
+
 class $AssetsImagesPngGen {
   const $AssetsImagesPngGen();
 
@@ -41,6 +54,7 @@ class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsPdfGen pdf = $AssetsPdfGen();
 }
 
 class AssetGenImage {

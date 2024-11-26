@@ -81,6 +81,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/png/
+    # pdfはディレクトリまでの指定だとflutter_genで生成されなかったので、ファイルまで指定している
+    - assets/pdf/pdf1.pdf
+    - assets/pdf/pdf2.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
