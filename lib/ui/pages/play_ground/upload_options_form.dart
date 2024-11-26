@@ -1,18 +1,14 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:supabase_storage_rls_practice/data/repository/supabase_auth_repository.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 // import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class UploadOptionsForm extends HookConsumerWidget {
@@ -20,6 +16,7 @@ class UploadOptionsForm extends HookConsumerWidget {
   const UploadOptionsForm({super.key, required this.parameter});
 
   final _defaultTypeOfDestinationPath = 'default';
+  final _customTypeOfDestinationPath = 'custom';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,9 +27,8 @@ class UploadOptionsForm extends HookConsumerWidget {
         supabaseServiceProvider.select((value) => value.auth.currentUser));
     final selectedPathType = useState<String>(_defaultTypeOfDestinationPath);
 
-    // logger.d(Assets.images.png.values.map((e) => e.path));
-
     useEffect(() {
+      // DropdownItemのvalueが空文字だとエラーになるため、初期値を設定している
       parameter.value = parameter.value
           .copyWith(sourceFilePath: Assets.images.png.values.first.path);
       return () {};
@@ -64,13 +60,13 @@ class UploadOptionsForm extends HookConsumerWidget {
           DropdownButton<String>(
             value: parameter.value.sourceFilePath,
             items: [
-              for (final fileType in [
+              for (final filePath in [
                 ...Assets.images.png.values.map((e) => e.path),
                 ...Assets.pdf.values,
               ])
                 DropdownMenuItem<String>(
-                  value: fileType,
-                  child: Text(fileType),
+                  value: filePath,
+                  child: Text(filePath),
                 ),
             ],
             onChanged: (newValue) {
@@ -112,7 +108,7 @@ class UploadOptionsForm extends HookConsumerWidget {
             },
           ),
           RadioListTile<String>(
-            value: 'custom',
+            value: _customTypeOfDestinationPath,
             groupValue: selectedPathType.value,
             title: const Text('カスタムパスを使用'),
             onChanged: (value) {
@@ -121,7 +117,7 @@ class UploadOptionsForm extends HookConsumerWidget {
               }
             },
           ),
-          if (selectedPathType.value == 'custom')
+          if (selectedPathType.value == _customTypeOfDestinationPath)
             TextField(
               controller: destFilePathController,
               onChanged: (value) => sourceFilePathController.text = value,
