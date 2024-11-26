@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
@@ -114,12 +113,20 @@ class UploadOptionsForm extends HookConsumerWidget {
             onChanged: (value) {
               if (value != null) {
                 selectedPathType.value = value;
+                if (destFilePathController.text.isEmpty) {
+                  destFilePathController.text =
+                      '${user?.id}/${path.basename(parameter.value.sourceFilePath)}';
+                }
+                parameter.value = parameter.value.copyWith(
+                  destFilePath: destFilePathController.text,
+                );
               }
             },
           ),
           if (selectedPathType.value == _customTypeOfDestinationPath)
             TextField(
               controller: destFilePathController,
+              maxLines: null,
               onChanged: (value) => sourceFilePathController.text = value,
               decoration: const InputDecoration(
                 labelText: '保存先のファイルパス',
