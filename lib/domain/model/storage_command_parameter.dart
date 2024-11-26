@@ -20,6 +20,7 @@ class UploadCommandParameter
     @Default('') String sourceFilePath,
     @Default('') String destFilePath,
     @Default(BucketKind.a) final BucketKind bucketKind,
+    @Default(false) bool isUpsertEnabled,
   }) = _UploadCommandParameter;
 
   @override

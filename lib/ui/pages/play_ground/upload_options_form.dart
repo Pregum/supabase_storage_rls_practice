@@ -133,6 +133,16 @@ class UploadOptionsForm extends HookConsumerWidget {
                 hintText: '保存先のファイルパスを入力してください',
               ),
             ),
+          CheckboxListTile(
+            title: const Text('upsertを有効にする'),
+            value: parameter.value.isUpsertEnabled,
+            onChanged: (bool? value) {
+              if (value != null) {
+                parameter.value =
+                    parameter.value.copyWith(isUpsertEnabled: value);
+              }
+            },
+          ),
           const Gap(24),
         ],
       ),

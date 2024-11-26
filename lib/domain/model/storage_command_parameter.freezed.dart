@@ -19,6 +19,7 @@ mixin _$UploadCommandParameter {
   String get sourceFilePath => throw _privateConstructorUsedError;
   String get destFilePath => throw _privateConstructorUsedError;
   BucketKind get bucketKind => throw _privateConstructorUsedError;
+  bool get isUpsertEnabled => throw _privateConstructorUsedError;
 
   /// Create a copy of UploadCommandParameter
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +35,10 @@ abstract class $UploadCommandParameterCopyWith<$Res> {
       _$UploadCommandParameterCopyWithImpl<$Res, UploadCommandParameter>;
   @useResult
   $Res call(
-      {String sourceFilePath, String destFilePath, BucketKind bucketKind});
+      {String sourceFilePath,
+      String destFilePath,
+      BucketKind bucketKind,
+      bool isUpsertEnabled});
 }
 
 /// @nodoc
@@ -56,6 +60,7 @@ class _$UploadCommandParameterCopyWithImpl<$Res,
     Object? sourceFilePath = null,
     Object? destFilePath = null,
     Object? bucketKind = null,
+    Object? isUpsertEnabled = null,
   }) {
     return _then(_value.copyWith(
       sourceFilePath: null == sourceFilePath
@@ -70,6 +75,10 @@ class _$UploadCommandParameterCopyWithImpl<$Res,
           ? _value.bucketKind
           : bucketKind // ignore: cast_nullable_to_non_nullable
               as BucketKind,
+      isUpsertEnabled: null == isUpsertEnabled
+          ? _value.isUpsertEnabled
+          : isUpsertEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -84,7 +93,10 @@ abstract class _$$UploadCommandParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String sourceFilePath, String destFilePath, BucketKind bucketKind});
+      {String sourceFilePath,
+      String destFilePath,
+      BucketKind bucketKind,
+      bool isUpsertEnabled});
 }
 
 /// @nodoc
@@ -105,6 +117,7 @@ class __$$UploadCommandParameterImplCopyWithImpl<$Res>
     Object? sourceFilePath = null,
     Object? destFilePath = null,
     Object? bucketKind = null,
+    Object? isUpsertEnabled = null,
   }) {
     return _then(_$UploadCommandParameterImpl(
       sourceFilePath: null == sourceFilePath
@@ -119,6 +132,10 @@ class __$$UploadCommandParameterImplCopyWithImpl<$Res>
           ? _value.bucketKind
           : bucketKind // ignore: cast_nullable_to_non_nullable
               as BucketKind,
+      isUpsertEnabled: null == isUpsertEnabled
+          ? _value.isUpsertEnabled
+          : isUpsertEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -129,7 +146,8 @@ class _$UploadCommandParameterImpl extends _UploadCommandParameter {
   const _$UploadCommandParameterImpl(
       {this.sourceFilePath = '',
       this.destFilePath = '',
-      this.bucketKind = BucketKind.a})
+      this.bucketKind = BucketKind.a,
+      this.isUpsertEnabled = false})
       : super._();
 
   @override
@@ -141,10 +159,13 @@ class _$UploadCommandParameterImpl extends _UploadCommandParameter {
   @override
   @JsonKey()
   final BucketKind bucketKind;
+  @override
+  @JsonKey()
+  final bool isUpsertEnabled;
 
   @override
   String toString() {
-    return 'UploadCommandParameter(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath, bucketKind: $bucketKind)';
+    return 'UploadCommandParameter(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath, bucketKind: $bucketKind, isUpsertEnabled: $isUpsertEnabled)';
   }
 
   @override
@@ -157,12 +178,14 @@ class _$UploadCommandParameterImpl extends _UploadCommandParameter {
             (identical(other.destFilePath, destFilePath) ||
                 other.destFilePath == destFilePath) &&
             (identical(other.bucketKind, bucketKind) ||
-                other.bucketKind == bucketKind));
+                other.bucketKind == bucketKind) &&
+            (identical(other.isUpsertEnabled, isUpsertEnabled) ||
+                other.isUpsertEnabled == isUpsertEnabled));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, sourceFilePath, destFilePath, bucketKind);
+  int get hashCode => Object.hash(
+      runtimeType, sourceFilePath, destFilePath, bucketKind, isUpsertEnabled);
 
   /// Create a copy of UploadCommandParameter
   /// with the given fields replaced by the non-null parameter values.
@@ -178,7 +201,8 @@ abstract class _UploadCommandParameter extends UploadCommandParameter {
   const factory _UploadCommandParameter(
       {final String sourceFilePath,
       final String destFilePath,
-      final BucketKind bucketKind}) = _$UploadCommandParameterImpl;
+      final BucketKind bucketKind,
+      final bool isUpsertEnabled}) = _$UploadCommandParameterImpl;
   const _UploadCommandParameter._() : super._();
 
   @override
@@ -187,6 +211,8 @@ abstract class _UploadCommandParameter extends UploadCommandParameter {
   String get destFilePath;
   @override
   BucketKind get bucketKind;
+  @override
+  bool get isUpsertEnabled;
 
   /// Create a copy of UploadCommandParameter
   /// with the given fields replaced by the non-null parameter values.
