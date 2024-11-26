@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,6 +12,8 @@ import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 import 'package:path/path.dart' as path;
+import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class UploadOptionsForm extends HookConsumerWidget {
   final UploadCommandParameter parameter;
@@ -59,8 +64,10 @@ class UploadOptionsForm extends HookConsumerWidget {
           DropdownButton<String>(
             value: parameter.value.sourceFilePath,
             items: [
-              for (final fileType
-                  in Assets.images.png.values.map((e) => e.path))
+              for (final fileType in [
+                ...Assets.images.png.values.map((e) => e.path),
+                ...Assets.pdf.values,
+              ])
                 DropdownMenuItem<String>(
                   value: fileType,
                   child: Text(fileType),
@@ -74,11 +81,17 @@ class UploadOptionsForm extends HookConsumerWidget {
                   parameter.value.copyWith(sourceFilePath: newValue);
             },
           ),
-          if (path.extension(parameter.value.sourceFilePath) == '.png')
-            Image.asset(
-              parameter.value.sourceFilePath,
-              fit: BoxFit.cover,
-            ),
+          switch (path.extension(parameter.value.sourceFilePath)) {
+            '.png' => Image.asset(
+                parameter.value.sourceFilePath,
+                fit: BoxFit.cover,
+              ),
+            '.pdf' => AspectRatio(
+                aspectRatio: 3 / 4, // pdfの下半分見切れ防止にアスペクト比を指定している
+                child: SfPdfViewer.asset(parameter.value.sourceFilePath),
+              ),
+            _ => Container(),
+          },
           const Gap(24),
           const Text('送信先のパスを選択してください'),
           RadioListTile<String>(
