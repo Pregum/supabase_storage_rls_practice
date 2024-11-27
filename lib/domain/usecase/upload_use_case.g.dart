@@ -6,7 +6,7 @@ part of 'upload_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uploadUseCaseHash() => r'f9109bb1e6fbbaab401aad53ae30782197c28bbb';
+String _$uploadUseCaseHash() => r'585992a9c7ea8f4fe12dff2ee36c57848b1f7289';
 
 /// See also [UploadUseCase].
 @ProviderFor(UploadUseCase)

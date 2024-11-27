@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:flutter/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 
@@ -22,14 +24,15 @@ class UploadUseCase extends _$UploadUseCase {
     // クエリを生成する
     final bucketName = parameter.bucketKind.name;
     final destinationFilePath = parameter.destFilePath;
-    final sourceFile = File(parameter.sourceFilePath);
+    logger.d('parameter: $parameter');
+    final sourceFileBinary = await rootBundle.load(parameter.sourceFilePath);
     final fileOptions = FileOptions(
       upsert: parameter.isUpsertEnabled,
     );
-    await _repository.upload(
+    await _repository.uploadBinary(
       bucket: bucketName,
       path: destinationFilePath,
-      file: sourceFile,
+      fileBinary: sourceFileBinary.buffer.asUint8List(),
       options: fileOptions,
     );
   }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -17,14 +18,14 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
     return this;
   }
 
-  Future<String> upload(
+  Future<String> uploadBinary(
       {required String bucket,
       required String path,
-      required File file,
+      required Uint8List fileBinary,
       FileOptions? options}) async {
-    return await _service.storage.from(bucket).upload(
+    return await _service.storage.from(bucket).uploadBinary(
           path,
-          file,
+          fileBinary,
           fileOptions: options ?? const FileOptions(),
         );
   }
