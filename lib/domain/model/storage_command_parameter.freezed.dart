@@ -322,12 +322,14 @@ class __$$UpdateCommandParameterImplCopyWithImpl<$Res>
 
 class _$UpdateCommandParameterImpl extends _UpdateCommandParameter {
   const _$UpdateCommandParameterImpl(
-      {required this.sourceFilePath, required this.destFilePath})
+      {this.sourceFilePath = '', this.destFilePath = ''})
       : super._();
 
   @override
+  @JsonKey()
   final String sourceFilePath;
   @override
+  @JsonKey()
   final String destFilePath;
 
   @override
@@ -361,8 +363,8 @@ class _$UpdateCommandParameterImpl extends _UpdateCommandParameter {
 
 abstract class _UpdateCommandParameter extends UpdateCommandParameter {
   const factory _UpdateCommandParameter(
-      {required final String sourceFilePath,
-      required final String destFilePath}) = _$UpdateCommandParameterImpl;
+      {final String sourceFilePath,
+      final String destFilePath}) = _$UpdateCommandParameterImpl;
   const _UpdateCommandParameter._() : super._();
 
   @override

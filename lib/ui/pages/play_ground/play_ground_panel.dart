@@ -20,18 +20,9 @@ class PlayGroundPanel extends HookConsumerWidget {
       Future(() {
         // TODO: 後でfactoryに変更する
         final param = switch (operationType.value) {
-          OperationType.upload => const UploadCommandParameter(
-              sourceFilePath: '',
-              destFilePath: '',
-            ),
-          OperationType.update => const UpdateCommandParameter(
-              sourceFilePath: '',
-              destFilePath: '',
-            ),
-          _ => const UpdateCommandParameter(
-              sourceFilePath: '',
-              destFilePath: '',
-            ),
+          OperationType.upload => const UploadCommandParameter(),
+          OperationType.update => const UpdateCommandParameter(),
+          _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
       });

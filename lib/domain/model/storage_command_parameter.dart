@@ -46,8 +46,8 @@ class UpdateCommandParameter
   const UpdateCommandParameter._();
 
   const factory UpdateCommandParameter({
-    required String sourceFilePath,
-    required String destFilePath,
+    @Default('') String sourceFilePath,
+    @Default('') String destFilePath,
   }) = _UpdateCommandParameter;
 
   @override
