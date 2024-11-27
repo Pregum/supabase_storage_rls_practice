@@ -46,11 +46,8 @@ class RootPage extends HookConsumerWidget {
         context.router.push(const LoginRoute());
       } else {
         logger.i('ログイン済みなのでホーム画面に遷移します');
-        context.router.replaceAll([
-          const PlayGroundNavigationRoute(children: [
-            PlayGroundRoute(),
-          ]),
-        ]);
+
+        context.router.push(const PlayGroundRoute());
       }
       return () {
         subscription.cancel();
