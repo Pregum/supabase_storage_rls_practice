@@ -14,5 +14,10 @@ enum BucketKind {
   m,
   n,
   o,
-  p,
+  p;
+
+  @override
+  toString() {
+    return name;
+  }
 }

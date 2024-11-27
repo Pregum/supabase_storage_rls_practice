@@ -226,6 +226,8 @@ abstract class _UploadCommandParameter extends UploadCommandParameter {
 mixin _$UpdateCommandParameter {
   String get sourceFilePath => throw _privateConstructorUsedError;
   String get destFilePath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+  bool get isUpsertEnabled => throw _privateConstructorUsedError;
 
   /// Create a copy of UpdateCommandParameter
   /// with the given fields replaced by the non-null parameter values.
@@ -240,7 +242,11 @@ abstract class $UpdateCommandParameterCopyWith<$Res> {
           $Res Function(UpdateCommandParameter) then) =
       _$UpdateCommandParameterCopyWithImpl<$Res, UpdateCommandParameter>;
   @useResult
-  $Res call({String sourceFilePath, String destFilePath});
+  $Res call(
+      {String sourceFilePath,
+      String destFilePath,
+      BucketKind bucketKind,
+      bool isUpsertEnabled});
 }
 
 /// @nodoc
@@ -261,6 +267,8 @@ class _$UpdateCommandParameterCopyWithImpl<$Res,
   $Res call({
     Object? sourceFilePath = null,
     Object? destFilePath = null,
+    Object? bucketKind = null,
+    Object? isUpsertEnabled = null,
   }) {
     return _then(_value.copyWith(
       sourceFilePath: null == sourceFilePath
@@ -271,6 +279,14 @@ class _$UpdateCommandParameterCopyWithImpl<$Res,
           ? _value.destFilePath
           : destFilePath // ignore: cast_nullable_to_non_nullable
               as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      isUpsertEnabled: null == isUpsertEnabled
+          ? _value.isUpsertEnabled
+          : isUpsertEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -284,7 +300,11 @@ abstract class _$$UpdateCommandParameterImplCopyWith<$Res>
       __$$UpdateCommandParameterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String sourceFilePath, String destFilePath});
+  $Res call(
+      {String sourceFilePath,
+      String destFilePath,
+      BucketKind bucketKind,
+      bool isUpsertEnabled});
 }
 
 /// @nodoc
@@ -304,6 +324,8 @@ class __$$UpdateCommandParameterImplCopyWithImpl<$Res>
   $Res call({
     Object? sourceFilePath = null,
     Object? destFilePath = null,
+    Object? bucketKind = null,
+    Object? isUpsertEnabled = null,
   }) {
     return _then(_$UpdateCommandParameterImpl(
       sourceFilePath: null == sourceFilePath
@@ -314,6 +336,14 @@ class __$$UpdateCommandParameterImplCopyWithImpl<$Res>
           ? _value.destFilePath
           : destFilePath // ignore: cast_nullable_to_non_nullable
               as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      isUpsertEnabled: null == isUpsertEnabled
+          ? _value.isUpsertEnabled
+          : isUpsertEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -322,7 +352,10 @@ class __$$UpdateCommandParameterImplCopyWithImpl<$Res>
 
 class _$UpdateCommandParameterImpl extends _UpdateCommandParameter {
   const _$UpdateCommandParameterImpl(
-      {this.sourceFilePath = '', this.destFilePath = ''})
+      {this.sourceFilePath = '',
+      this.destFilePath = '',
+      this.bucketKind = BucketKind.a,
+      this.isUpsertEnabled = false})
       : super._();
 
   @override
@@ -331,10 +364,16 @@ class _$UpdateCommandParameterImpl extends _UpdateCommandParameter {
   @override
   @JsonKey()
   final String destFilePath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+  @override
+  @JsonKey()
+  final bool isUpsertEnabled;
 
   @override
   String toString() {
-    return 'UpdateCommandParameter(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath)';
+    return 'UpdateCommandParameter(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath, bucketKind: $bucketKind, isUpsertEnabled: $isUpsertEnabled)';
   }
 
   @override
@@ -345,11 +384,16 @@ class _$UpdateCommandParameterImpl extends _UpdateCommandParameter {
             (identical(other.sourceFilePath, sourceFilePath) ||
                 other.sourceFilePath == sourceFilePath) &&
             (identical(other.destFilePath, destFilePath) ||
-                other.destFilePath == destFilePath));
+                other.destFilePath == destFilePath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind) &&
+            (identical(other.isUpsertEnabled, isUpsertEnabled) ||
+                other.isUpsertEnabled == isUpsertEnabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sourceFilePath, destFilePath);
+  int get hashCode => Object.hash(
+      runtimeType, sourceFilePath, destFilePath, bucketKind, isUpsertEnabled);
 
   /// Create a copy of UpdateCommandParameter
   /// with the given fields replaced by the non-null parameter values.
@@ -364,13 +408,19 @@ class _$UpdateCommandParameterImpl extends _UpdateCommandParameter {
 abstract class _UpdateCommandParameter extends UpdateCommandParameter {
   const factory _UpdateCommandParameter(
       {final String sourceFilePath,
-      final String destFilePath}) = _$UpdateCommandParameterImpl;
+      final String destFilePath,
+      final BucketKind bucketKind,
+      final bool isUpsertEnabled}) = _$UpdateCommandParameterImpl;
   const _UpdateCommandParameter._() : super._();
 
   @override
   String get sourceFilePath;
   @override
   String get destFilePath;
+  @override
+  BucketKind get bucketKind;
+  @override
+  bool get isUpsertEnabled;
 
   /// Create a copy of UpdateCommandParameter
   /// with the given fields replaced by the non-null parameter values.

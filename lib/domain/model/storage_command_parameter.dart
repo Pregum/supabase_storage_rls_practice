@@ -48,6 +48,8 @@ class UpdateCommandParameter
   const factory UpdateCommandParameter({
     @Default('') String sourceFilePath,
     @Default('') String destFilePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+    @Default(false) bool isUpsertEnabled,
   }) = _UpdateCommandParameter;
 
   @override
