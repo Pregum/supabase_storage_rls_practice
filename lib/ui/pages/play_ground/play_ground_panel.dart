@@ -8,6 +8,7 @@ import 'package:supabase_storage_rls_practice/domain/model/storage_command_param
 import 'package:supabase_storage_rls_practice/domain/usecase/upload_use_case.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/default_parameter_area.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_options_form.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
 
 class PlayGroundPanel extends HookConsumerWidget {
   const PlayGroundPanel({super.key});
@@ -15,26 +16,33 @@ class PlayGroundPanel extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final operationType = useState<OperationType>(OperationType.upload);
-    final parameter = useMemoized<StorageCommandParameter>(
+    useEffect(() {
+      Future(() {
         // TODO: 後でfactoryに変更する
-        () => switch (operationType.value) {
-              OperationType.upload => const UploadCommandParameter(
-                  sourceFilePath: '',
-                  destFilePath: '',
-                ),
-              OperationType.update => const UpdateCommandParameter(
-                  sourceFilePath: '',
-                  destFilePath: '',
-                ),
-              _ => const UpdateCommandParameter(
-                  sourceFilePath: '',
-                  destFilePath: '',
-                ),
-            },
-        [operationType.value]);
+        final param = switch (operationType.value) {
+          OperationType.upload => const UploadCommandParameter(
+              sourceFilePath: '',
+              destFilePath: '',
+            ),
+          OperationType.update => const UpdateCommandParameter(
+              sourceFilePath: '',
+              destFilePath: '',
+            ),
+          _ => const UpdateCommandParameter(
+              sourceFilePath: '',
+              destFilePath: '',
+            ),
+        };
+        ref.read(playGroundViewModelProvider.notifier).update(param);
+      });
+
+      return () {};
+    }, [operationType.value]);
 
     // TabBarを切り替えた時に画面の更新が走る為、画面情報を保持するために配置
     useAutomaticKeepAlive();
+
+    final parameter = ref.watch(playGroundViewModelProvider);
 
     return GestureDetector(
       onTap: () => primaryFocus?.unfocus(),
