@@ -10,12 +10,14 @@ import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 import 'package:path/path.dart' as path;
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+enum UploadDestinationPathType {
+  defaultPath,
+  customPath,
+}
+
 class UploadOptionsForm extends HookConsumerWidget {
   final UploadCommandParameter parameter;
   const UploadOptionsForm({super.key, required this.parameter});
-
-  final _defaultTypeOfDestinationPath = 'default';
-  final _customTypeOfDestinationPath = 'custom';
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,12 +26,17 @@ class UploadOptionsForm extends HookConsumerWidget {
     final destFilePathController = useTextEditingController();
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
-    final selectedPathType = useState<String>(_defaultTypeOfDestinationPath);
+    final selectedPathType = useState<UploadDestinationPathType>(
+        UploadDestinationPathType.defaultPath);
 
     useEffect(() {
-      // DropdownItemのvalueが空文字だとエラーになるため、初期値を設定している
-      parameter.value = parameter.value
-          .copyWith(sourceFilePath: Assets.images.png.values.first.path);
+      // DropdownItemのvalueが空文字だとエラーになるのと、
+      // そのまま実行した時に空文字になっているので、初期値を設定している
+      final filePath = Assets.images.png.values.first.path;
+      parameter.value = parameter.value.copyWith(
+        sourceFilePath: filePath,
+        destFilePath: '${user?.id}/${path.basename(filePath)}',
+      );
       return () {};
     }, []);
 
@@ -89,8 +96,8 @@ class UploadOptionsForm extends HookConsumerWidget {
           },
           const Gap(24),
           const Text('送信先のパスを選択してください'),
-          RadioListTile<String>(
-            value: _defaultTypeOfDestinationPath,
+          RadioListTile<UploadDestinationPathType>(
+            value: UploadDestinationPathType.defaultPath,
             groupValue: selectedPathType.value,
             title: Text(
               'デフォルトパスを使用: \n(uid/file_name) → \n'
@@ -106,8 +113,8 @@ class UploadOptionsForm extends HookConsumerWidget {
               }
             },
           ),
-          RadioListTile<String>(
-            value: _customTypeOfDestinationPath,
+          RadioListTile<UploadDestinationPathType>(
+            value: UploadDestinationPathType.customPath,
             groupValue: selectedPathType.value,
             title: const Text('カスタムパスを使用'),
             onChanged: (value) {
@@ -123,7 +130,7 @@ class UploadOptionsForm extends HookConsumerWidget {
               }
             },
           ),
-          if (selectedPathType.value == _customTypeOfDestinationPath)
+          if (selectedPathType.value == UploadDestinationPathType.customPath)
             TextField(
               controller: destFilePathController,
               maxLines: null,
