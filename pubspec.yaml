@@ -43,6 +43,12 @@ dependencies:
   supabase_flutter: ^2.8.1
   logger: ^2.5.0
   gap: ^3.0.1
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+  path: ^1.9.0
+  path_provider: ^2.1.5
+  syncfusion_flutter_pdfviewer: ^27.2.4
+  fluttertoast: ^8.2.8
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +65,9 @@ dev_dependencies:
   riverpod_generator: ^2.6.3
   riverpod_lint: ^2.6.3
   auto_route_generator: ^9.0.0
+  freezed: ^2.5.7
+  json_serializable: ^6.9.0
+  flutter_gen_runner: ^5.8.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -72,9 +81,11 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/png/
+    # pdfはディレクトリまでの指定だとflutter_genで生成されなかったので、ファイルまで指定している
+    - assets/pdf/pdf1.pdf
+    - assets/pdf/pdf2.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
