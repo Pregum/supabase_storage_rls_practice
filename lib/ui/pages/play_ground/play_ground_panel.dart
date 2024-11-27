@@ -81,24 +81,13 @@ class PlayGroundPanel extends HookConsumerWidget {
                 _ => const DefaultParameterArea(),
               },
               FilledButton(
-                  child: const Text('実行'),
-                  onPressed: () async {
-                    switch (parameter) {
-                      // ダブルディスパッチで汎用的に実装するか迷ったが
-                      // 拡張性はそこまで優先度が高くないと判断し、switchで愚直に実装する
-                      case UploadCommandParameter():
-                        try {
-                          await ref
-                              .read(uploadUseCaseProvider)
-                              .execute(parameter);
-                        } catch (e) {
-                          logger.e(e);
-                        }
-                        break;
-                      default:
-                        break;
-                    }
-                  }),
+                child: const Text('実行'),
+                onPressed: () async {
+                  final viewModel =
+                      ref.read(playGroundViewModelProvider.notifier);
+                  await viewModel.executeCommand();
+                },
+              ),
               const Gap(64),
             ],
           ),
