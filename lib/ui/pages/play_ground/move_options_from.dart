@@ -26,13 +26,15 @@ class MoveOptionsFrom extends HookConsumerWidget {
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
 
+    final hasNewBucket = useState(false);
+
     useEffect(() {
       // DropdownItemのvalueが空文字だとエラーになるのと、
       // そのまま実行した時に空文字になっているので、初期値を設定している
       final filePath = Assets.images.png.values.first.path;
       parameter.value = parameter.value.copyWith(
-        sourceFilePath: filePath,
-        destFilePath: '${user?.id}/${path.basename(filePath)}',
+        oldFilePath: filePath,
+        newFilePath: '${user?.id}/${path.basename(filePath)}',
       );
 
       // パラメータの変更をviewModelに通知する
@@ -66,30 +68,46 @@ class MoveOptionsFrom extends HookConsumerWidget {
           const Text('移動元のパスを選択してください'),
           SimpleRadioButton(
             defaultValue: '',
-            filePath: parameter.value.sourceFilePath,
+            filePath: parameter.value.oldFilePath,
             onChanged: (value) {
-              parameter.value = parameter.value.copyWith(sourceFilePath: value);
+              parameter.value = parameter.value.copyWith(oldFilePath: value);
             },
           ),
           const Gap(24),
           const Text('移動先のパスを選択してください'),
           SimpleRadioButton(
             defaultValue: '',
-            filePath: parameter.value.destFilePath,
+            filePath: parameter.value.newFilePath,
             onChanged: (value) {
-              parameter.value = parameter.value.copyWith(destFilePath: value);
+              parameter.value = parameter.value.copyWith(newFilePath: value);
             },
           ),
           CheckboxListTile(
-            title: const Text('upsertを有効にする'),
-            value: parameter.value.isUpsertEnabled,
+            title: const Text('別バケットへ移動する'),
+            value: hasNewBucket.value,
             onChanged: (bool? value) {
               if (value != null) {
-                parameter.value =
-                    parameter.value.copyWith(isUpsertEnabled: value);
+                hasNewBucket.value = value;
+                if (value) {
+                  parameter.value = parameter.value.copyWith(
+                    newBucketKind: BucketKind.a,
+                  );
+                } else {
+                  parameter.value =
+                      parameter.value.copyWith(newBucketKind: null);
+                }
               }
             },
           ),
+          if (hasNewBucket.value)
+            SimpleDropdown(
+              defaultValue: parameter.value.bucketKind,
+              items: BucketKind.values,
+              onChanged: (value) {
+                parameter.value =
+                    parameter.value.copyWith(newBucketKind: value);
+              },
+            ),
           const Gap(24),
         ],
       ),
