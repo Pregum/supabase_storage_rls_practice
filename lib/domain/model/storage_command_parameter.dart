@@ -29,8 +29,7 @@ class UploadCommandParameter
   }
 
   @override
-  Future<void> setup() async {
-  }
+  Future<void> setup() async {}
 
   @override
   Future<void> teardown() async {
@@ -65,5 +64,37 @@ class UpdateCommandParameter
   @override
   Future<void> teardown() async {
     // TODO: implement teardown
+  }
+}
+
+@freezed
+class MoveCommandParameter
+    with _$MoveCommandParameter
+    implements StorageCommandParameter {
+  const MoveCommandParameter._();
+
+  const factory MoveCommandParameter({
+    @Default('') String sourceFilePath,
+    @Default('') String destFilePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+    @Default(false) bool isUpsertEnabled,
+  }) = _MoveCommandParameter;
+
+  @override
+  Future<void> execute() async {
+    // TODO: implement execute
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> setup() async {
+    // TODO: implement setup
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> teardown() async {
+    // TODO: implement teardown
+    throw UnimplementedError();
   }
 }
