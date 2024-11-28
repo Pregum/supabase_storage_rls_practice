@@ -14,15 +14,13 @@ import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dar
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class UpdateOptionsForm extends HookConsumerWidget {
-  final UpdateCommandParameter parentParameter;
-  const UpdateOptionsForm({
-    super.key,
-    required this.parentParameter,
-  });
+  const UpdateOptionsForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final parameter = useState<UpdateCommandParameter>(parentParameter);
+    final parentParameter = ref.watch(playGroundViewModelProvider);
+    final parameter = useState<UpdateCommandParameter>(
+        parentParameter as UpdateCommandParameter);
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
 

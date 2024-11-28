@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
-import 'package:supabase_storage_rls_practice/domain/usecase/upload_use_case.dart';
-import 'package:supabase_storage_rls_practice/ui/pages/play_ground/default_parameter_area.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/move_options_from.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/update_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
@@ -23,6 +21,7 @@ class PlayGroundPanel extends HookConsumerWidget {
         final param = switch (operationType.value) {
           OperationType.upload => const UploadCommandParameter(),
           OperationType.update => const UpdateCommandParameter(),
+          OperationType.move => const MoveCommandParameter(),
           _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
@@ -68,13 +67,9 @@ class PlayGroundPanel extends HookConsumerWidget {
               ),
               const Divider(),
               switch (parameter) {
-                UploadCommandParameter() => UploadOptionsForm(
-                    parameter: parameter,
-                  ),
-                UpdateCommandParameter() => UpdateOptionsForm(
-                    parentParameter: parameter,
-                  ),
-                // _ => const DefaultParameterArea(),
+                UploadCommandParameter() => const UploadOptionsForm(),
+                UpdateCommandParameter() => const UpdateOptionsForm(),
+                MoveCommandParameter() => const MoveOptionsFrom(),
               },
               FilledButton(
                 child: const Text('実行'),
