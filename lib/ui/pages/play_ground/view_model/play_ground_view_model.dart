@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/domain/usecase/move_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/usecase/update_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/usecase/upload_use_case.dart';
 
@@ -37,7 +38,8 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         final updateParameter = state as UpdateCommandParameter;
         await ref.read(updateUseCaseProvider).execute(updateParameter);
       case MoveCommandParameter():
-      // TODO: Handle this case.
+        final moveParameter = state as MoveCommandParameter;
+        await ref.read(moveUseCaseProvider).execute(moveParameter);
     }
   }
 }
