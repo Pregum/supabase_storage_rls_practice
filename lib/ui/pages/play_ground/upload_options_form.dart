@@ -18,12 +18,13 @@ enum UploadDestinationPathType {
 }
 
 class UploadOptionsForm extends HookConsumerWidget {
-  final UploadCommandParameter parameter;
-  const UploadOptionsForm({super.key, required this.parameter});
+  const UploadOptionsForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final parameter = useState<UploadCommandParameter>(this.parameter);
+    final parentParameter = ref.watch(playGroundViewModelProvider);
+    final parameter = useState<UploadCommandParameter>(
+        parentParameter as UploadCommandParameter);
     final sourceFilePathController = useTextEditingController();
     final destFilePathController = useTextEditingController();
     final user = ref.watch(
