@@ -18,15 +18,49 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
     return this;
   }
 
-  Future<String> uploadBinary(
-      {required String bucket,
-      required String path,
-      required Uint8List fileBinary,
-      FileOptions? options}) async {
+  Future<String> uploadBinary({
+    required String bucket,
+    required String path,
+    required Uint8List fileBinary,
+    FileOptions? options,
+  }) async {
     return await _service.storage.from(bucket).uploadBinary(
           path,
           fileBinary,
           fileOptions: options ?? const FileOptions(),
         );
+  }
+
+  Future<void> updateBinary({
+    required String bucket,
+    required String path,
+    required Uint8List fileBinary,
+    FileOptions? options,
+  }) async {
+    await _service.storage.from(bucket).updateBinary(
+          path,
+          fileBinary,
+          fileOptions: options ?? const FileOptions(),
+        );
+  }
+
+  Future<void> move({
+    required String bucket,
+    required String oldPath,
+    required String newPath,
+    String? destinationBucket,
+  }) async {
+    await _service.storage.from(bucket).move(
+          oldPath,
+          newPath,
+          destinationBucket: destinationBucket,
+        );
+  }
+
+  Future<void> remove({
+    required String bucket,
+    required List<String> paths,
+  }) async {
+    await _service.storage.from(bucket).remove(paths);
   }
 }
