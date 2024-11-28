@@ -432,10 +432,10 @@ abstract class _UpdateCommandParameter extends UpdateCommandParameter {
 
 /// @nodoc
 mixin _$MoveCommandParameter {
-  String get sourceFilePath => throw _privateConstructorUsedError;
-  String get destFilePath => throw _privateConstructorUsedError;
+  String get oldFilePath => throw _privateConstructorUsedError;
+  String get newFilePath => throw _privateConstructorUsedError;
   BucketKind get bucketKind => throw _privateConstructorUsedError;
-  bool get isUpsertEnabled => throw _privateConstructorUsedError;
+  BucketKind? get newBucketKind => throw _privateConstructorUsedError;
 
   /// Create a copy of MoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
@@ -451,10 +451,10 @@ abstract class $MoveCommandParameterCopyWith<$Res> {
       _$MoveCommandParameterCopyWithImpl<$Res, MoveCommandParameter>;
   @useResult
   $Res call(
-      {String sourceFilePath,
-      String destFilePath,
+      {String oldFilePath,
+      String newFilePath,
       BucketKind bucketKind,
-      bool isUpsertEnabled});
+      BucketKind? newBucketKind});
 }
 
 /// @nodoc
@@ -473,28 +473,28 @@ class _$MoveCommandParameterCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sourceFilePath = null,
-    Object? destFilePath = null,
+    Object? oldFilePath = null,
+    Object? newFilePath = null,
     Object? bucketKind = null,
-    Object? isUpsertEnabled = null,
+    Object? newBucketKind = freezed,
   }) {
     return _then(_value.copyWith(
-      sourceFilePath: null == sourceFilePath
-          ? _value.sourceFilePath
-          : sourceFilePath // ignore: cast_nullable_to_non_nullable
+      oldFilePath: null == oldFilePath
+          ? _value.oldFilePath
+          : oldFilePath // ignore: cast_nullable_to_non_nullable
               as String,
-      destFilePath: null == destFilePath
-          ? _value.destFilePath
-          : destFilePath // ignore: cast_nullable_to_non_nullable
+      newFilePath: null == newFilePath
+          ? _value.newFilePath
+          : newFilePath // ignore: cast_nullable_to_non_nullable
               as String,
       bucketKind: null == bucketKind
           ? _value.bucketKind
           : bucketKind // ignore: cast_nullable_to_non_nullable
               as BucketKind,
-      isUpsertEnabled: null == isUpsertEnabled
-          ? _value.isUpsertEnabled
-          : isUpsertEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
+      newBucketKind: freezed == newBucketKind
+          ? _value.newBucketKind
+          : newBucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind?,
     ) as $Val);
   }
 }
@@ -508,10 +508,10 @@ abstract class _$$MoveCommandParameterImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String sourceFilePath,
-      String destFilePath,
+      {String oldFilePath,
+      String newFilePath,
       BucketKind bucketKind,
-      bool isUpsertEnabled});
+      BucketKind? newBucketKind});
 }
 
 /// @nodoc
@@ -527,28 +527,28 @@ class __$$MoveCommandParameterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? sourceFilePath = null,
-    Object? destFilePath = null,
+    Object? oldFilePath = null,
+    Object? newFilePath = null,
     Object? bucketKind = null,
-    Object? isUpsertEnabled = null,
+    Object? newBucketKind = freezed,
   }) {
     return _then(_$MoveCommandParameterImpl(
-      sourceFilePath: null == sourceFilePath
-          ? _value.sourceFilePath
-          : sourceFilePath // ignore: cast_nullable_to_non_nullable
+      oldFilePath: null == oldFilePath
+          ? _value.oldFilePath
+          : oldFilePath // ignore: cast_nullable_to_non_nullable
               as String,
-      destFilePath: null == destFilePath
-          ? _value.destFilePath
-          : destFilePath // ignore: cast_nullable_to_non_nullable
+      newFilePath: null == newFilePath
+          ? _value.newFilePath
+          : newFilePath // ignore: cast_nullable_to_non_nullable
               as String,
       bucketKind: null == bucketKind
           ? _value.bucketKind
           : bucketKind // ignore: cast_nullable_to_non_nullable
               as BucketKind,
-      isUpsertEnabled: null == isUpsertEnabled
-          ? _value.isUpsertEnabled
-          : isUpsertEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
+      newBucketKind: freezed == newBucketKind
+          ? _value.newBucketKind
+          : newBucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind?,
     ));
   }
 }
@@ -557,28 +557,27 @@ class __$$MoveCommandParameterImplCopyWithImpl<$Res>
 
 class _$MoveCommandParameterImpl extends _MoveCommandParameter {
   const _$MoveCommandParameterImpl(
-      {this.sourceFilePath = '',
-      this.destFilePath = '',
+      {this.oldFilePath = '',
+      this.newFilePath = '',
       this.bucketKind = BucketKind.a,
-      this.isUpsertEnabled = false})
+      this.newBucketKind})
       : super._();
 
   @override
   @JsonKey()
-  final String sourceFilePath;
+  final String oldFilePath;
   @override
   @JsonKey()
-  final String destFilePath;
+  final String newFilePath;
   @override
   @JsonKey()
   final BucketKind bucketKind;
   @override
-  @JsonKey()
-  final bool isUpsertEnabled;
+  final BucketKind? newBucketKind;
 
   @override
   String toString() {
-    return 'MoveCommandParameter(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath, bucketKind: $bucketKind, isUpsertEnabled: $isUpsertEnabled)';
+    return 'MoveCommandParameter(oldFilePath: $oldFilePath, newFilePath: $newFilePath, bucketKind: $bucketKind, newBucketKind: $newBucketKind)';
   }
 
   @override
@@ -586,19 +585,19 @@ class _$MoveCommandParameterImpl extends _MoveCommandParameter {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MoveCommandParameterImpl &&
-            (identical(other.sourceFilePath, sourceFilePath) ||
-                other.sourceFilePath == sourceFilePath) &&
-            (identical(other.destFilePath, destFilePath) ||
-                other.destFilePath == destFilePath) &&
+            (identical(other.oldFilePath, oldFilePath) ||
+                other.oldFilePath == oldFilePath) &&
+            (identical(other.newFilePath, newFilePath) ||
+                other.newFilePath == newFilePath) &&
             (identical(other.bucketKind, bucketKind) ||
                 other.bucketKind == bucketKind) &&
-            (identical(other.isUpsertEnabled, isUpsertEnabled) ||
-                other.isUpsertEnabled == isUpsertEnabled));
+            (identical(other.newBucketKind, newBucketKind) ||
+                other.newBucketKind == newBucketKind));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, sourceFilePath, destFilePath, bucketKind, isUpsertEnabled);
+      runtimeType, oldFilePath, newFilePath, bucketKind, newBucketKind);
 
   /// Create a copy of MoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
@@ -613,20 +612,20 @@ class _$MoveCommandParameterImpl extends _MoveCommandParameter {
 
 abstract class _MoveCommandParameter extends MoveCommandParameter {
   const factory _MoveCommandParameter(
-      {final String sourceFilePath,
-      final String destFilePath,
+      {final String oldFilePath,
+      final String newFilePath,
       final BucketKind bucketKind,
-      final bool isUpsertEnabled}) = _$MoveCommandParameterImpl;
+      final BucketKind? newBucketKind}) = _$MoveCommandParameterImpl;
   const _MoveCommandParameter._() : super._();
 
   @override
-  String get sourceFilePath;
+  String get oldFilePath;
   @override
-  String get destFilePath;
+  String get newFilePath;
   @override
   BucketKind get bucketKind;
   @override
-  bool get isUpsertEnabled;
+  BucketKind? get newBucketKind;
 
   /// Create a copy of MoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.

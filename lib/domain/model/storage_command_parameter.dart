@@ -40,9 +40,9 @@ class MoveCommandParameter
   const MoveCommandParameter._();
 
   const factory MoveCommandParameter({
-    @Default('') String sourceFilePath,
-    @Default('') String destFilePath,
+    @Default('') String oldFilePath,
+    @Default('') String newFilePath,
     @Default(BucketKind.a) final BucketKind bucketKind,
-    @Default(false) bool isUpsertEnabled,
+    BucketKind? newBucketKind,
   }) = _MoveCommandParameter;
 }
