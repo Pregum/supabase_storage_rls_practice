@@ -6,7 +6,7 @@ part of 'update_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$updateUseCaseHash() => r'a0a6f39d453a8c4eec80a1a97f290e290e2916e2';
+String _$updateUseCaseHash() => r'9c899d31e896d926512af984c31f0cf81feac5af';
 
 /// See also [UpdateUseCase].
 @ProviderFor(UpdateUseCase)
@@ -17,10 +17,10 @@ final updateUseCaseProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$updateUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
+  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseStorageRepositoryProvider,
-    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
+    supabaseServiceProvider,
+    ...?supabaseServiceProvider.allTransitiveDependencies
   },
 );
 

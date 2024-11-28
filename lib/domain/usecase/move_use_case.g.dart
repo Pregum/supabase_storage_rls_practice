@@ -6,7 +6,7 @@ part of 'move_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$moveUseCaseHash() => r'4ce73b2002e7575c46465a06ccb2277f0c96ba9c';
+String _$moveUseCaseHash() => r'635f45836084ff256ed2d2298033cbcccf995bc4';
 
 /// See also [MoveUseCase].
 @ProviderFor(MoveUseCase)
@@ -16,10 +16,10 @@ final moveUseCaseProvider =
   name: r'moveUseCaseProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$moveUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
+  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseStorageRepositoryProvider,
-    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
+    supabaseServiceProvider,
+    ...?supabaseServiceProvider.allTransitiveDependencies
   },
 );
 
