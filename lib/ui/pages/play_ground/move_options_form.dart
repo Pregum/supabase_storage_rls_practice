@@ -11,7 +11,6 @@ import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/pl
 import 'package:path/path.dart' as path;
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_dropdown.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class MoveOptionsFrom extends HookConsumerWidget {
   const MoveOptionsFrom({
