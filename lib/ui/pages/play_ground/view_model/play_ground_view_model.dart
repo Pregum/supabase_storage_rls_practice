@@ -37,9 +37,15 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
       case UpdateCommandParameter():
         final updateParameter = state as UpdateCommandParameter;
         await ref.read(updateUseCaseProvider).execute(updateParameter);
+        break;
       case MoveCommandParameter():
         final moveParameter = state as MoveCommandParameter;
         await ref.read(moveUseCaseProvider).execute(moveParameter);
+        break;
+      case DownloadCommandParameter():
+        break;
+      case DeleteCommandParameter():
+        break;
     }
   }
 }

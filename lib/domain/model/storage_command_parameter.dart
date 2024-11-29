@@ -46,3 +46,27 @@ class MoveCommandParameter
     BucketKind? newBucketKind,
   }) = _MoveCommandParameter;
 }
+
+@freezed
+class DownloadCommandParameter
+    with _$DownloadCommandParameter
+    implements StorageCommandParameter {
+  const DownloadCommandParameter._();
+
+  const factory DownloadCommandParameter({
+    @Default('') String filePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+  }) = _DownloadCommandParameter;
+}
+
+@freezed
+class DeleteCommandParameter
+    with _$DeleteCommandParameter
+    implements StorageCommandParameter {
+  const DeleteCommandParameter._();
+
+  const factory DeleteCommandParameter({
+    @Default('') String filePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+  }) = _DeleteCommandParameter;
+}

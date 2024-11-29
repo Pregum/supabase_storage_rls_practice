@@ -634,3 +634,319 @@ abstract class _MoveCommandParameter extends MoveCommandParameter {
   _$$MoveCommandParameterImplCopyWith<_$MoveCommandParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$DownloadCommandParameter {
+  String get filePath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+
+  /// Create a copy of DownloadCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DownloadCommandParameterCopyWith<DownloadCommandParameter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DownloadCommandParameterCopyWith<$Res> {
+  factory $DownloadCommandParameterCopyWith(DownloadCommandParameter value,
+          $Res Function(DownloadCommandParameter) then) =
+      _$DownloadCommandParameterCopyWithImpl<$Res, DownloadCommandParameter>;
+  @useResult
+  $Res call({String filePath, BucketKind bucketKind});
+}
+
+/// @nodoc
+class _$DownloadCommandParameterCopyWithImpl<$Res,
+        $Val extends DownloadCommandParameter>
+    implements $DownloadCommandParameterCopyWith<$Res> {
+  _$DownloadCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DownloadCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+    Object? bucketKind = null,
+  }) {
+    return _then(_value.copyWith(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DownloadCommandParameterImplCopyWith<$Res>
+    implements $DownloadCommandParameterCopyWith<$Res> {
+  factory _$$DownloadCommandParameterImplCopyWith(
+          _$DownloadCommandParameterImpl value,
+          $Res Function(_$DownloadCommandParameterImpl) then) =
+      __$$DownloadCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String filePath, BucketKind bucketKind});
+}
+
+/// @nodoc
+class __$$DownloadCommandParameterImplCopyWithImpl<$Res>
+    extends _$DownloadCommandParameterCopyWithImpl<$Res,
+        _$DownloadCommandParameterImpl>
+    implements _$$DownloadCommandParameterImplCopyWith<$Res> {
+  __$$DownloadCommandParameterImplCopyWithImpl(
+      _$DownloadCommandParameterImpl _value,
+      $Res Function(_$DownloadCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DownloadCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+    Object? bucketKind = null,
+  }) {
+    return _then(_$DownloadCommandParameterImpl(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DownloadCommandParameterImpl extends _DownloadCommandParameter {
+  const _$DownloadCommandParameterImpl(
+      {this.filePath = '', this.bucketKind = BucketKind.a})
+      : super._();
+
+  @override
+  @JsonKey()
+  final String filePath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+
+  @override
+  String toString() {
+    return 'DownloadCommandParameter(filePath: $filePath, bucketKind: $bucketKind)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DownloadCommandParameterImpl &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filePath, bucketKind);
+
+  /// Create a copy of DownloadCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DownloadCommandParameterImplCopyWith<_$DownloadCommandParameterImpl>
+      get copyWith => __$$DownloadCommandParameterImplCopyWithImpl<
+          _$DownloadCommandParameterImpl>(this, _$identity);
+}
+
+abstract class _DownloadCommandParameter extends DownloadCommandParameter {
+  const factory _DownloadCommandParameter(
+      {final String filePath,
+      final BucketKind bucketKind}) = _$DownloadCommandParameterImpl;
+  const _DownloadCommandParameter._() : super._();
+
+  @override
+  String get filePath;
+  @override
+  BucketKind get bucketKind;
+
+  /// Create a copy of DownloadCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DownloadCommandParameterImplCopyWith<_$DownloadCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$DeleteCommandParameter {
+  String get filePath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+
+  /// Create a copy of DeleteCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DeleteCommandParameterCopyWith<DeleteCommandParameter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeleteCommandParameterCopyWith<$Res> {
+  factory $DeleteCommandParameterCopyWith(DeleteCommandParameter value,
+          $Res Function(DeleteCommandParameter) then) =
+      _$DeleteCommandParameterCopyWithImpl<$Res, DeleteCommandParameter>;
+  @useResult
+  $Res call({String filePath, BucketKind bucketKind});
+}
+
+/// @nodoc
+class _$DeleteCommandParameterCopyWithImpl<$Res,
+        $Val extends DeleteCommandParameter>
+    implements $DeleteCommandParameterCopyWith<$Res> {
+  _$DeleteCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of DeleteCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+    Object? bucketKind = null,
+  }) {
+    return _then(_value.copyWith(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$DeleteCommandParameterImplCopyWith<$Res>
+    implements $DeleteCommandParameterCopyWith<$Res> {
+  factory _$$DeleteCommandParameterImplCopyWith(
+          _$DeleteCommandParameterImpl value,
+          $Res Function(_$DeleteCommandParameterImpl) then) =
+      __$$DeleteCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String filePath, BucketKind bucketKind});
+}
+
+/// @nodoc
+class __$$DeleteCommandParameterImplCopyWithImpl<$Res>
+    extends _$DeleteCommandParameterCopyWithImpl<$Res,
+        _$DeleteCommandParameterImpl>
+    implements _$$DeleteCommandParameterImplCopyWith<$Res> {
+  __$$DeleteCommandParameterImplCopyWithImpl(
+      _$DeleteCommandParameterImpl _value,
+      $Res Function(_$DeleteCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of DeleteCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+    Object? bucketKind = null,
+  }) {
+    return _then(_$DeleteCommandParameterImpl(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteCommandParameterImpl extends _DeleteCommandParameter {
+  const _$DeleteCommandParameterImpl(
+      {this.filePath = '', this.bucketKind = BucketKind.a})
+      : super._();
+
+  @override
+  @JsonKey()
+  final String filePath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+
+  @override
+  String toString() {
+    return 'DeleteCommandParameter(filePath: $filePath, bucketKind: $bucketKind)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteCommandParameterImpl &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filePath, bucketKind);
+
+  /// Create a copy of DeleteCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteCommandParameterImplCopyWith<_$DeleteCommandParameterImpl>
+      get copyWith => __$$DeleteCommandParameterImplCopyWithImpl<
+          _$DeleteCommandParameterImpl>(this, _$identity);
+}
+
+abstract class _DeleteCommandParameter extends DeleteCommandParameter {
+  const factory _DeleteCommandParameter(
+      {final String filePath,
+      final BucketKind bucketKind}) = _$DeleteCommandParameterImpl;
+  const _DeleteCommandParameter._() : super._();
+
+  @override
+  String get filePath;
+  @override
+  BucketKind get bucketKind;
+
+  /// Create a copy of DeleteCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$DeleteCommandParameterImplCopyWith<_$DeleteCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
