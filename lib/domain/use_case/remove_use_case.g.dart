@@ -6,7 +6,7 @@ part of 'remove_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$removeUseCaseHash() => r'faacc1ee5c4a276947d08138fba52b8744002889';
+String _$removeUseCaseHash() => r'899ba7f3f0af043cbc2365f1d63ec23daac22b75';
 
 /// See also [RemoveUseCase].
 @ProviderFor(RemoveUseCase)
@@ -17,10 +17,10 @@ final removeUseCaseProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$removeUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
+  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseServiceProvider,
-    ...?supabaseServiceProvider.allTransitiveDependencies
+    supabaseStorageRepositoryProvider,
+    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
   },
 );
 

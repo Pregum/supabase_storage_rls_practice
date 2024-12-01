@@ -2,26 +2,26 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/config/my_provider_observer.dart';
+import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:supabase_storage_rls_practice/routing/router.dart';
 import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final container = ProviderContainer(observers: [
-    MyProviderObserver(),
-  ]);
+  final container = ProviderContainer();
   final client = await container.read(supabaseServiceFutureProvider.future);
-  final serviceContainer = ProviderContainer(parent: container, overrides: [
-    supabaseServiceProvider.overrideWithValue(client),
-  ]);
-  // final s = serviceContainer.read(supabaseServiceProvider);
-  // logger.d('s: $s');
 
   runApp(
-    UncontrolledProviderScope(
-      container: serviceContainer,
+    ProviderScope(
+      observers: [
+        MyProviderObserver(),
+      ],
+      overrides: [
+        supabaseServiceProvider.overrideWithValue(client),
+      ],
       child: const MyApp(),
     ),
   );

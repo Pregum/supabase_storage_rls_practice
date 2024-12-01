@@ -6,7 +6,7 @@ part of 'copy_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$copyUseCaseHash() => r'd1652e925ce63e0cc0b0c4a55981028e1d5730e8';
+String _$copyUseCaseHash() => r'0c6e69bc824717422978b83e37b7a67046432104';
 
 /// See also [CopyUseCase].
 @ProviderFor(CopyUseCase)
@@ -16,10 +16,10 @@ final copyUseCaseProvider =
   name: r'copyUseCaseProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$copyUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
+  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseServiceProvider,
-    ...?supabaseServiceProvider.allTransitiveDependencies
+    supabaseStorageRepositoryProvider,
+    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
   },
 );
 

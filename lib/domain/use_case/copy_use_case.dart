@@ -6,7 +6,7 @@ import 'package:supabase_storage_rls_practice/domain/model/storage_command_param
 
 part 'copy_use_case.g.dart';
 
-@Riverpod(dependencies: [supabaseService])
+@Riverpod(dependencies: [SupabaseStorageRepository])
 class CopyUseCase extends _$CopyUseCase {
   late final SupabaseStorageRepository _repository;
 

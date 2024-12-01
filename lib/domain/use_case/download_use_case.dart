@@ -8,7 +8,7 @@ import 'package:supabase_storage_rls_practice/domain/model/storage_command_param
 
 part 'download_use_case.g.dart';
 
-@Riverpod(dependencies: [supabaseService])
+@Riverpod(dependencies: [SupabaseStorageRepository])
 class DownloadUseCase extends _$DownloadUseCase {
   late final SupabaseStorageRepository _repository;
 

@@ -6,7 +6,7 @@ part of 'list_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$listUseCaseHash() => r'31bbd8e9476dfa28c7733c74d63403f79777bf7e';
+String _$listUseCaseHash() => r'83b98df53128c725860eca40f1f474a3b3e21006';
 
 /// See also [ListUseCase].
 @ProviderFor(ListUseCase)
@@ -16,10 +16,10 @@ final listUseCaseProvider =
   name: r'listUseCaseProvider',
   debugGetCreateSourceHash:
       const bool.fromEnvironment('dart.vm.product') ? null : _$listUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
+  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseServiceProvider,
-    ...?supabaseServiceProvider.allTransitiveDependencies
+    supabaseStorageRepositoryProvider,
+    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
   },
 );
 
