@@ -60,6 +60,19 @@ class DownloadCommandParameter
 }
 
 @freezed
+class ListCommandParameter with _$ListCommandParameter
+    implements StorageCommandParameter {
+  const ListCommandParameter._();
+  const factory ListCommandParameter({
+    @Default(BucketKind.a) BucketKind bucketKind,
+    @Default('') String directoryPath,
+    int? limit,
+    int? offset,
+    String? search,
+  }) = _ListCommandParameter;
+}
+
+@freezed
 class DeleteCommandParameter
     with _$DeleteCommandParameter
     implements StorageCommandParameter {

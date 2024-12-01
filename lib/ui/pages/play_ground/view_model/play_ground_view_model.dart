@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/download_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/list_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/move_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/update_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/upload_use_case.dart';
@@ -45,7 +46,13 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         break;
       case DownloadCommandParameter():
         final downloadParameter = state as DownloadCommandParameter;
-        await ref.read(downloadUseCaseProvider).execute(downloadParameter);
+        final _ =
+            await ref.read(downloadUseCaseProvider).execute(downloadParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
+        break;
+      case ListCommandParameter():
+        final listParameter = state as ListCommandParameter;
+        final _ = await ref.read(listUseCaseProvider).execute(listParameter);
         // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
       case DeleteCommandParameter():

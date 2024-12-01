@@ -68,10 +68,23 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
     return binaryFile;
   }
 
-  Future<void> remove({
+  Future<List<FileObject>> remove({
     required String bucket,
     required List<String> paths,
   }) async {
-    await _service.storage.from(bucket).remove(paths);
+    final result = await _service.storage.from(bucket).remove(paths);
+    return result;
+  }
+
+  Future<List<FileObject>> list({
+    required String bucket,
+    required String directoryPath,
+    SearchOptions? searchOptions,
+  }) async {
+    final result = await _service.storage.from(bucket).list(
+          path: directoryPath,
+          searchOptions: searchOptions ?? const SearchOptions(),
+        );
+    return result;
   }
 }
