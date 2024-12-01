@@ -16,14 +16,14 @@ class CopyUseCase extends _$CopyUseCase {
     return this;
   }
 
-  Future<void> execute(CopyCommandParameter parameter) async {
+  Future<String> execute(CopyCommandParameter parameter) async {
     // クエリを生成する
     final bucketName = parameter.bucketKind.name;
     final sourceFilePath = parameter.sourceFilePath;
     final destFilePath = parameter.destFilePath;
     final newBucketName = parameter.newBucketKind?.name;
     logger.d('parameter: $parameter');
-    await _repository.copy(
+    return await _repository.copy(
       bucket: bucketName,
       fromPath: sourceFilePath,
       toPath: destFilePath,

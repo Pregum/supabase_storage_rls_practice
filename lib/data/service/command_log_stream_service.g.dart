@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'play_ground_view_model.dart';
+part of 'command_log_stream_service.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$playGroundViewModelHash() =>
-    r'9e2d014e065c01a2fb864f661f044a89ebf8f628';
+String _$commandLogStreamServiceHash() =>
+    r'3952bbb0f175466052690d64e22342545fe8816f';
 
-/// See also [PlayGroundViewModel].
-@ProviderFor(PlayGroundViewModel)
-final playGroundViewModelProvider = AutoDisposeNotifierProvider<
-    PlayGroundViewModel, StorageCommandParameter>.internal(
-  PlayGroundViewModel.new,
-  name: r'playGroundViewModelProvider',
+/// See also [CommandLogStreamService].
+@ProviderFor(CommandLogStreamService)
+final commandLogStreamServiceProvider = AutoDisposeStreamNotifierProvider<
+    CommandLogStreamService, CommandResult>.internal(
+  CommandLogStreamService.new,
+  name: r'commandLogStreamServiceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$playGroundViewModelHash,
+      : _$commandLogStreamServiceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PlayGroundViewModel = AutoDisposeNotifier<StorageCommandParameter>;
+typedef _$CommandLogStreamService = AutoDisposeStreamNotifier<CommandResult>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

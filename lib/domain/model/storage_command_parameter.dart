@@ -3,7 +3,11 @@ import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 
 part 'storage_command_parameter.freezed.dart';
 
-sealed class StorageCommandParameter {}
+sealed class StorageCommandParameter {
+  String get bucketName;
+  String get methodName;
+  Map<String, Object> get arguments;
+}
 
 @freezed
 class UploadCommandParameter
@@ -17,6 +21,19 @@ class UploadCommandParameter
     @Default(BucketKind.a) final BucketKind bucketKind,
     @Default(false) bool isUpsertEnabled,
   }) = _UploadCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'sourceFilePath': sourceFilePath,
+        'destFilePath': destFilePath,
+        'isUpsertEnabled': isUpsertEnabled,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'uploadBinary';
 }
 
 @freezed
@@ -31,6 +48,19 @@ class UpdateCommandParameter
     @Default(BucketKind.a) final BucketKind bucketKind,
     @Default(false) bool isUpsertEnabled,
   }) = _UpdateCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'sourceFilePath': sourceFilePath,
+        'destFilePath': destFilePath,
+        'isUpsertEnabled': isUpsertEnabled,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'updateBinary';
 }
 
 @freezed
@@ -45,6 +75,24 @@ class MoveCommandParameter
     @Default(BucketKind.a) final BucketKind bucketKind,
     BucketKind? newBucketKind,
   }) = _MoveCommandParameter;
+
+  @override
+  Map<String, Object> get arguments {
+    final args = {
+      'oldFilePath': oldFilePath,
+      'newFilePath': newFilePath,
+    };
+    if (newBucketKind != null) {
+      args['newBucketKind'] = newBucketKind!.name;
+    }
+    return args;
+  }
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'move';
 }
 
 @freezed
@@ -57,6 +105,17 @@ class DownloadCommandParameter
     @Default('') String filePath,
     @Default(BucketKind.a) final BucketKind bucketKind,
   }) = _DownloadCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'filePath': filePath,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'download';
 }
 
 @freezed
@@ -71,6 +130,29 @@ class ListCommandParameter
     int? offset,
     String? search,
   }) = _ListCommandParameter;
+
+  @override
+  Map<String, Object> get arguments {
+    final args = {
+      'directoryPath': directoryPath,
+    };
+    if (limit != null) {
+      args['limit'] = limit.toString();
+    }
+    if (offset != null) {
+      args['offset'] = offset.toString();
+    }
+    if (search != null) {
+      args['search'] = search!;
+    }
+    return args;
+  }
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'list';
 }
 
 @freezed
@@ -84,6 +166,24 @@ class CopyCommandParameter
     @Default(BucketKind.a) BucketKind bucketKind,
     BucketKind? newBucketKind,
   }) = _CopyCommandParameter;
+
+  @override
+  Map<String, Object> get arguments {
+    final args = {
+      'sourceFilePath': sourceFilePath,
+      'destFilePath': destFilePath,
+    };
+    if (newBucketKind != null) {
+      args['newBucketKind'] = newBucketKind!.name;
+    }
+    return args;
+  }
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'copy';
 }
 
 @freezed
@@ -96,6 +196,17 @@ class RemoveCommandParameter
     @Default('') String filePath,
     @Default(BucketKind.a) final BucketKind bucketKind,
   }) = _DeleteCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'filePath': filePath,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'remove';
 }
 
 @freezed
@@ -110,6 +221,18 @@ class CreateSignedUrlCommandParameter
     /// 期限切れになる秒数 e.g.) 60 = 1分
     @Default(60) int expiresIn,
   }) = _CreateSignedUrlCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'filePath': filePath,
+        'expiresIn': expiresIn,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'createSignedUrl';
 }
 
 @freezed
@@ -124,6 +247,18 @@ class CreateSignedUrlsCommandParameter
     /// 期限切れになる秒数 e.g.) 60 = 1分
     @Default(60) int expiresIn,
   }) = _CreateSignedUrlsCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'filePaths': filePaths,
+        'expiresIn': expiresIn,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'createSignedUrls';
 }
 
 @freezed
@@ -137,6 +272,18 @@ class CreateSignedUploadUrlCommandParameter
     @Default(BucketKind.a) final BucketKind bucketKind,
     @Default(60) int expiresIn,
   }) = _CreateSignedUploadUrlCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'filePath': filePath,
+        'expiresIn': expiresIn,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'createSignedUploadUrl';
 }
 
 @freezed
@@ -153,6 +300,19 @@ class UploadToSignedUrlCommandParameter
     /// アップロードに使用するバイナリデータのパス
     @Default('') String dataPathToUpload,
   }) = _UploadToSignedUrlCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'destinationPath': destinationPath,
+        'token': token,
+        'dataPathToUpload': dataPathToUpload,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'uploadBinaryToSignedUrl';
 }
 
 @freezed
@@ -164,4 +324,15 @@ class GetPublicUrlCommandParameter
     @Default('') String filePath,
     @Default(BucketKind.a) final BucketKind bucketKind,
   }) = _GetPublicUrlCommandParameter;
+
+  @override
+  Map<String, Object> get arguments => {
+        'filePath': filePath,
+      };
+
+  @override
+  String get bucketName => bucketKind.name;
+
+  @override
+  String get methodName => 'getPublicUrl';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_syntax_view/flutter_syntax_view.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
@@ -55,6 +56,20 @@ class PlayGroundPanel extends HookConsumerWidget {
     useAutomaticKeepAlive();
 
     final parameter = ref.watch(playGroundViewModelProvider);
+    final viewModel = ref.read(playGroundViewModelProvider.notifier);
+
+    final codeBlockView = useMemoized(
+      () {
+        final code = viewModel.buildCommandText(parameter);
+        final view = SyntaxView(
+          code: code,
+          syntax: Syntax.DART,
+          syntaxTheme: SyntaxTheme.gravityDark(),
+        );
+        return view;
+      },
+      [operationType.value, parameter],
+    );
 
     return GestureDetector(
       onTap: () => primaryFocus?.unfocus(),
@@ -114,6 +129,9 @@ class PlayGroundPanel extends HookConsumerWidget {
                   await viewModel.executeCommand();
                 },
               ),
+              const Gap(24),
+              const Text('実行されるコード'),
+              codeBlockView,
               const Gap(64),
             ],
           ),

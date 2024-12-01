@@ -6,7 +6,7 @@ part of 'copy_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$copyUseCaseHash() => r'0c6e69bc824717422978b83e37b7a67046432104';
+String _$copyUseCaseHash() => r'9a8f339d7cd83c7551b8905320259503e8d3d438';
 
 /// See also [CopyUseCase].
 @ProviderFor(CopyUseCase)

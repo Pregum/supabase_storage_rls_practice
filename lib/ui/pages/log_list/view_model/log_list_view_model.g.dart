@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'play_ground_view_model.dart';
+part of 'log_list_view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$playGroundViewModelHash() =>
-    r'9e2d014e065c01a2fb864f661f044a89ebf8f628';
+String _$logListViewModelHash() => r'2cc7e2bae35dbad79a36b57e1babd9cbc16cd11a';
 
-/// See also [PlayGroundViewModel].
-@ProviderFor(PlayGroundViewModel)
-final playGroundViewModelProvider = AutoDisposeNotifierProvider<
-    PlayGroundViewModel, StorageCommandParameter>.internal(
-  PlayGroundViewModel.new,
-  name: r'playGroundViewModelProvider',
+/// See also [LogListViewModel].
+@ProviderFor(LogListViewModel)
+final logListViewModelProvider =
+    AutoDisposeNotifierProvider<LogListViewModel, List<CommandResult>>.internal(
+  LogListViewModel.new,
+  name: r'logListViewModelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$playGroundViewModelHash,
+      : _$logListViewModelHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$PlayGroundViewModel = AutoDisposeNotifier<StorageCommandParameter>;
+typedef _$LogListViewModel = AutoDisposeNotifier<List<CommandResult>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
