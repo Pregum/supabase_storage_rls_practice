@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
@@ -18,14 +16,14 @@ class CreateSignedUrlUseCase extends _$CreateSignedUrlUseCase {
     return this;
   }
 
-  Future<Uint8List> execute(CreateSignedUrlCommandParameter parameter) async {
+  Future<String> execute(CreateSignedUrlCommandParameter parameter) async {
     // クエリを生成する
     final bucketName = parameter.bucketKind.name;
     logger.d('parameter: $parameter');
-    final result = await _repository.download(
-      bucket: bucketName,
-      filePath: parameter.filePath,
-    );
+    final result = await _repository.createSignedUrl(
+        bucket: bucketName,
+        path: parameter.filePath,
+        expiresInSeconds: parameter.expiresIn);
     logger.d('result: $result');
     return result;
   }

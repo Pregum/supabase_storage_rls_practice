@@ -7,7 +7,7 @@ part of 'create_signed_url_use_case.dart';
 // **************************************************************************
 
 String _$createSignedUrlUseCaseHash() =>
-    r'27767ed1ec3d17c07ea1ae78251c373b95e3ddb2';
+    r'2c7aec272e5ac5138902a6ff08ba5c16837d1c07';
 
 /// See also [CreateSignedUrlUseCase].
 @ProviderFor(CreateSignedUrlUseCase)
