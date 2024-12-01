@@ -1,29 +1,32 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 
-part 'create_signed_url_use_case.g.dart';
+part 'create_signed_urls_use_case.g.dart';
 
 @Riverpod(dependencies: [SupabaseStorageRepository])
-class CreateSignedUrlUseCase extends _$CreateSignedUrlUseCase {
+class CreateSignedUrlsUseCase extends _$CreateSignedUrlsUseCase {
   late final SupabaseStorageRepository _repository;
 
   @override
-  CreateSignedUrlUseCase build() {
+  CreateSignedUrlsUseCase build() {
     final repository = ref.read(supabaseStorageRepositoryProvider);
     _repository = repository;
     return this;
   }
 
-  Future<String> execute(CreateSignedUrlCommandParameter parameter) async {
+  Future<List<SignedUrl>> execute(
+      CreateSignedUrlsCommandParameter parameter) async {
     // クエリを生成する
     final bucketName = parameter.bucketKind.name;
     logger.d('parameter: $parameter');
-    final result = await _repository.createSignedUrl(
-        bucket: bucketName,
-        path: parameter.filePath,
-        expiresInSeconds: parameter.expiresIn);
+    final result = await _repository.createSignedUrls(
+      bucket: bucketName,
+      paths: parameter.filePaths,
+      expiresInSeconds: parameter.expiresIn,
+    );
     logger.d('result: $result');
     return result;
   }

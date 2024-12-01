@@ -77,6 +77,8 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
             .execute(createSignedUrlParameter);
         // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
+      case CreateSignedUrlsCommandParameter():
+      // TODO: Handle this case.
     }
   }
 }
