@@ -2171,3 +2171,166 @@ abstract class _UploadToSignedUrlCommandParameter
           _$UploadToSignedUrlCommandParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$GetPublicUrlCommandParameter {
+  String get filePath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+
+  /// Create a copy of GetPublicUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $GetPublicUrlCommandParameterCopyWith<GetPublicUrlCommandParameter>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GetPublicUrlCommandParameterCopyWith<$Res> {
+  factory $GetPublicUrlCommandParameterCopyWith(
+          GetPublicUrlCommandParameter value,
+          $Res Function(GetPublicUrlCommandParameter) then) =
+      _$GetPublicUrlCommandParameterCopyWithImpl<$Res,
+          GetPublicUrlCommandParameter>;
+  @useResult
+  $Res call({String filePath, BucketKind bucketKind});
+}
+
+/// @nodoc
+class _$GetPublicUrlCommandParameterCopyWithImpl<$Res,
+        $Val extends GetPublicUrlCommandParameter>
+    implements $GetPublicUrlCommandParameterCopyWith<$Res> {
+  _$GetPublicUrlCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of GetPublicUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+    Object? bucketKind = null,
+  }) {
+    return _then(_value.copyWith(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GetPublicUrlCommandParameterImplCopyWith<$Res>
+    implements $GetPublicUrlCommandParameterCopyWith<$Res> {
+  factory _$$GetPublicUrlCommandParameterImplCopyWith(
+          _$GetPublicUrlCommandParameterImpl value,
+          $Res Function(_$GetPublicUrlCommandParameterImpl) then) =
+      __$$GetPublicUrlCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String filePath, BucketKind bucketKind});
+}
+
+/// @nodoc
+class __$$GetPublicUrlCommandParameterImplCopyWithImpl<$Res>
+    extends _$GetPublicUrlCommandParameterCopyWithImpl<$Res,
+        _$GetPublicUrlCommandParameterImpl>
+    implements _$$GetPublicUrlCommandParameterImplCopyWith<$Res> {
+  __$$GetPublicUrlCommandParameterImplCopyWithImpl(
+      _$GetPublicUrlCommandParameterImpl _value,
+      $Res Function(_$GetPublicUrlCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GetPublicUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePath = null,
+    Object? bucketKind = null,
+  }) {
+    return _then(_$GetPublicUrlCommandParameterImpl(
+      filePath: null == filePath
+          ? _value.filePath
+          : filePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GetPublicUrlCommandParameterImpl extends _GetPublicUrlCommandParameter {
+  const _$GetPublicUrlCommandParameterImpl(
+      {this.filePath = '', this.bucketKind = BucketKind.a})
+      : super._();
+
+  @override
+  @JsonKey()
+  final String filePath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+
+  @override
+  String toString() {
+    return 'GetPublicUrlCommandParameter(filePath: $filePath, bucketKind: $bucketKind)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GetPublicUrlCommandParameterImpl &&
+            (identical(other.filePath, filePath) ||
+                other.filePath == filePath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, filePath, bucketKind);
+
+  /// Create a copy of GetPublicUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GetPublicUrlCommandParameterImplCopyWith<
+          _$GetPublicUrlCommandParameterImpl>
+      get copyWith => __$$GetPublicUrlCommandParameterImplCopyWithImpl<
+          _$GetPublicUrlCommandParameterImpl>(this, _$identity);
+}
+
+abstract class _GetPublicUrlCommandParameter
+    extends GetPublicUrlCommandParameter {
+  const factory _GetPublicUrlCommandParameter(
+      {final String filePath,
+      final BucketKind bucketKind}) = _$GetPublicUrlCommandParameterImpl;
+  const _GetPublicUrlCommandParameter._() : super._();
+
+  @override
+  String get filePath;
+  @override
+  BucketKind get bucketKind;
+
+  /// Create a copy of GetPublicUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$GetPublicUrlCommandParameterImplCopyWith<
+          _$GetPublicUrlCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

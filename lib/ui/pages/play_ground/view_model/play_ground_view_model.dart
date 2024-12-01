@@ -1,4 +1,3 @@
-import 'package:riverpod/src/framework.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
@@ -7,6 +6,7 @@ import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_uplo
 import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_url_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_urls_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/download_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/get_public_url_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/list_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/move_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/remove_use_case.dart';
@@ -103,6 +103,13 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         final _ = await ref
             .read(uploadToSignedUrlUseCaseProvider)
             .execute(uploadToSignedUrlParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
+        break;
+      case GetPublicUrlCommandParameter():
+        final getPublicUrlParameter = state as GetPublicUrlCommandParameter;
+        final _ = ref
+            .read(getPublicUrlUseCaseProvider)
+            .execute(getPublicUrlParameter);
         // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
     }

@@ -154,3 +154,14 @@ class UploadToSignedUrlCommandParameter
     @Default('') String dataPathToUpload,
   }) = _UploadToSignedUrlCommandParameter;
 }
+
+@freezed
+class GetPublicUrlCommandParameter
+    with _$GetPublicUrlCommandParameter
+    implements StorageCommandParameter {
+  const GetPublicUrlCommandParameter._();
+  const factory GetPublicUrlCommandParameter({
+    @Default('') String filePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+  }) = _GetPublicUrlCommandParameter;
+}
