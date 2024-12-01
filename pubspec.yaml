@@ -50,6 +50,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^27.2.4
   fluttertoast: ^8.2.8
   flutter_syntax_view: ^4.1.0
+  rxdart: ^0.28.0
+  uuid: ^4.5.1
 
 dev_dependencies:
   flutter_test:

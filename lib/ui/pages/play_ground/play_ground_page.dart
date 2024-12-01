@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/log_list/log_list_panel.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/play_ground_panel.dart';
 
 @RoutePage()
@@ -53,9 +54,8 @@ class PlayGroundPage extends HookConsumerWidget {
                 const PlayGroundPanel(
                   key: PageStorageKey(0),
                 ),
-                Container(
-                  key: const PageStorageKey(1),
-                  child: Text('ろぐ'),
+                const LogListPanel(
+                  key: PageStorageKey(1),
                 ),
                 Container(
                   key: const PageStorageKey(2),

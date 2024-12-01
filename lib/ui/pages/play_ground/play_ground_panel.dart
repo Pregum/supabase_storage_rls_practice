@@ -56,14 +56,11 @@ class PlayGroundPanel extends HookConsumerWidget {
     useAutomaticKeepAlive();
 
     final parameter = ref.watch(playGroundViewModelProvider);
+    final viewModel = ref.read(playGroundViewModelProvider.notifier);
 
     final codeBlockView = useMemoized(
       () {
-        final code = '''
-await _service.storage.from('${parameter.bucketName}').${parameter.methodName}(
-  ${parameter.arguments.entries.map(_decoratePrettyPrint).join(',\n  ')},
-);
-''';
+        final code = viewModel.buildCommandText(parameter);
         final view = SyntaxView(
           code: code,
           syntax: Syntax.DART,
@@ -141,14 +138,5 @@ await _service.storage.from('${parameter.bucketName}').${parameter.methodName}(
         ),
       ),
     );
-  }
-
-  String _decoratePrettyPrint(MapEntry<String, Object> entry) {
-    final key = entry.key;
-    final value = entry.value;
-    if (value is String) {
-      return '$key: \'$value\'';
-    }
-    return '$key: $value';
   }
 }
