@@ -37,6 +37,8 @@ class PlayGroundPanel extends HookConsumerWidget {
             const CreateSignedUrlCommandParameter(),
           OperationType.createSignedUrls =>
             const CreateSignedUrlsCommandParameter(),
+          OperationType.createSignedUploadUrl =>
+            const CreateSignedUploadUrlCommandParameter(),
           _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
