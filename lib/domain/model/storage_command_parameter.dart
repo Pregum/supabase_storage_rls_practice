@@ -97,3 +97,17 @@ class RemoveCommandParameter
     @Default(BucketKind.a) final BucketKind bucketKind,
   }) = _DeleteCommandParameter;
 }
+
+@freezed
+class CreateSignedUrlCommandParameter
+    with _$CreateSignedUrlCommandParameter
+    implements StorageCommandParameter {
+  const CreateSignedUrlCommandParameter._();
+  const factory CreateSignedUrlCommandParameter({
+    @Default('') String filePath,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+
+    /// 期限切れになる秒数 e.g.) 60 = 1分
+    @Default(60) int expiresIn,
+  }) = _CreateSignedUrlCommandParameter;
+}

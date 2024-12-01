@@ -100,4 +100,18 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
         );
     return result;
   }
+
+  Future<String> createSignedUrl({
+    required String bucket,
+    required String path,
+    required int expiresInSeconds,
+    TransformOptions? options,
+  }) async {
+    final result = await _service.storage.from(bucket).createSignedUrl(
+          path,
+          expiresInSeconds,
+          transform: options,
+        );
+    return result;
+  }
 }
