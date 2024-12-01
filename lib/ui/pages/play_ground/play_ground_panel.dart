@@ -29,7 +29,7 @@ class PlayGroundPanel extends HookConsumerWidget {
           OperationType.download => const DownloadCommandParameter(),
           OperationType.list => const ListCommandParameter(),
           OperationType.copy => const CopyCommandParameter(),
-          OperationType.remove => throw UnimplementedError(),
+          OperationType.remove => const RemoveCommandParameter(),
           _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
