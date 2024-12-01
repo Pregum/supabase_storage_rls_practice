@@ -1,9 +1,10 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
-import 'package:supabase_storage_rls_practice/domain/usecase/move_use_case.dart';
-import 'package:supabase_storage_rls_practice/domain/usecase/update_use_case.dart';
-import 'package:supabase_storage_rls_practice/domain/usecase/upload_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/download_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/move_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/update_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/upload_use_case.dart';
 
 part 'play_ground_view_model.g.dart';
 
@@ -37,9 +38,18 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
       case UpdateCommandParameter():
         final updateParameter = state as UpdateCommandParameter;
         await ref.read(updateUseCaseProvider).execute(updateParameter);
+        break;
       case MoveCommandParameter():
         final moveParameter = state as MoveCommandParameter;
         await ref.read(moveUseCaseProvider).execute(moveParameter);
+        break;
+      case DownloadCommandParameter():
+        final downloadParameter = state as DownloadCommandParameter;
+        await ref.read(downloadUseCaseProvider).execute(downloadParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
+        break;
+      case DeleteCommandParameter():
+        break;
     }
   }
 }

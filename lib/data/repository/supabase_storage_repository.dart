@@ -57,6 +57,17 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
         );
   }
 
+  Future<Uint8List> download({
+    required String bucket,
+    required String filePath,
+    TransformOptions? transformOptions,
+  }) async {
+    final binaryFile = await _service.storage
+        .from(bucket)
+        .download(filePath, transform: transformOptions);
+    return binaryFile;
+  }
+
   Future<void> remove({
     required String bucket,
     required List<String> paths,
