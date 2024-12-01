@@ -30,6 +30,13 @@ class SimpleRadioButton extends HookConsumerWidget {
     final value = useState(defaultValue);
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
+    final defaultPath = useMemoized(
+      () {
+        final joinedPath = path.join('${user?.id}', path.basename(filePath));
+        return joinedPath;
+      },
+      [filePath, user],
+    );
 
     useEffect(() {
       void onListener() {
@@ -49,12 +56,12 @@ class SimpleRadioButton extends HookConsumerWidget {
         groupValue: selectedPathType.value,
         title: Text(
           'デフォルトパスを使用: \n(uid/file_name) → \n'
-          '(${user?.id}/${path.basename(filePath)})',
+          '$defaultPath',
         ),
         onChanged: (value) {
           if (value != null) {
             selectedPathType.value = value;
-            onChanged?.call('(${user?.id}/${path.basename(filePath)})');
+            onChanged?.call(defaultPath);
           }
         },
       ),
