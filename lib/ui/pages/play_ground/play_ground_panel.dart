@@ -8,6 +8,7 @@ import 'package:supabase_storage_rls_practice/ui/pages/play_ground/copy_option_f
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/download_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/list_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/move_options_form.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/remove_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/update_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
@@ -28,6 +29,7 @@ class PlayGroundPanel extends HookConsumerWidget {
           OperationType.download => const DownloadCommandParameter(),
           OperationType.list => const ListCommandParameter(),
           OperationType.copy => const CopyCommandParameter(),
+          OperationType.remove => throw UnimplementedError(),
           _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
@@ -79,7 +81,7 @@ class PlayGroundPanel extends HookConsumerWidget {
                 DownloadCommandParameter() => const DownloadOptionForm(),
                 ListCommandParameter() => const ListOptionForm(),
                 CopyCommandParameter() => const CopyOptionForm(),
-                DeleteCommandParameter() => throw UnimplementedError(),
+                RemoveCommandParameter() => const RemoveOptionForm(),
               },
               FilledButton(
                 child: const Text('実行'),
