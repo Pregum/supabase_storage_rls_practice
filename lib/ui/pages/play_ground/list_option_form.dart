@@ -18,10 +18,14 @@ class ListOptionForm extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parentParameter = ref.watch(playGroundViewModelProvider);
-    final parameter = useState<ListCommandParameter>(
-        parentParameter as ListCommandParameter);
+    final parameter =
+        useState<ListCommandParameter>(parentParameter as ListCommandParameter);
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
+
+    final limitController = useTextEditingController(text: '1');
+    final offsetController = useTextEditingController(text: '0');
+    final searchTextController = useTextEditingController();
 
     useEffect(() {
       // DropdownItemのvalueが空文字だとエラーになるのと、
@@ -58,13 +62,7 @@ class ListOptionForm extends HookConsumerWidget {
           ),
           const Gap(24),
           const Text('取得先のディレクトリパスを入力してください'),
-          SimpleRadioButton(
-            defaultValue: '',
-            filePath: parameter.value.directoryPath,
-            onChanged: (value) {
-              parameter.value = parameter.value.copyWith(directoryPath: );
-            },
-          ),
+          const SimpleRadioButton(defaultValue: '', filePath: ''),
           const Gap(24),
         ],
       ),
