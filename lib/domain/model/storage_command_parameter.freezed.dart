@@ -1221,38 +1221,38 @@ abstract class _CopyCommandParameter extends CopyCommandParameter {
 }
 
 /// @nodoc
-mixin _$DeleteCommandParameter {
+mixin _$RemoveCommandParameter {
   String get filePath => throw _privateConstructorUsedError;
   BucketKind get bucketKind => throw _privateConstructorUsedError;
 
-  /// Create a copy of DeleteCommandParameter
+  /// Create a copy of RemoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DeleteCommandParameterCopyWith<DeleteCommandParameter> get copyWith =>
+  $RemoveCommandParameterCopyWith<RemoveCommandParameter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DeleteCommandParameterCopyWith<$Res> {
-  factory $DeleteCommandParameterCopyWith(DeleteCommandParameter value,
-          $Res Function(DeleteCommandParameter) then) =
-      _$DeleteCommandParameterCopyWithImpl<$Res, DeleteCommandParameter>;
+abstract class $RemoveCommandParameterCopyWith<$Res> {
+  factory $RemoveCommandParameterCopyWith(RemoveCommandParameter value,
+          $Res Function(RemoveCommandParameter) then) =
+      _$RemoveCommandParameterCopyWithImpl<$Res, RemoveCommandParameter>;
   @useResult
   $Res call({String filePath, BucketKind bucketKind});
 }
 
 /// @nodoc
-class _$DeleteCommandParameterCopyWithImpl<$Res,
-        $Val extends DeleteCommandParameter>
-    implements $DeleteCommandParameterCopyWith<$Res> {
-  _$DeleteCommandParameterCopyWithImpl(this._value, this._then);
+class _$RemoveCommandParameterCopyWithImpl<$Res,
+        $Val extends RemoveCommandParameter>
+    implements $RemoveCommandParameterCopyWith<$Res> {
+  _$RemoveCommandParameterCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DeleteCommandParameter
+  /// Create a copy of RemoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1275,7 +1275,7 @@ class _$DeleteCommandParameterCopyWithImpl<$Res,
 
 /// @nodoc
 abstract class _$$DeleteCommandParameterImplCopyWith<$Res>
-    implements $DeleteCommandParameterCopyWith<$Res> {
+    implements $RemoveCommandParameterCopyWith<$Res> {
   factory _$$DeleteCommandParameterImplCopyWith(
           _$DeleteCommandParameterImpl value,
           $Res Function(_$DeleteCommandParameterImpl) then) =
@@ -1287,7 +1287,7 @@ abstract class _$$DeleteCommandParameterImplCopyWith<$Res>
 
 /// @nodoc
 class __$$DeleteCommandParameterImplCopyWithImpl<$Res>
-    extends _$DeleteCommandParameterCopyWithImpl<$Res,
+    extends _$RemoveCommandParameterCopyWithImpl<$Res,
         _$DeleteCommandParameterImpl>
     implements _$$DeleteCommandParameterImplCopyWith<$Res> {
   __$$DeleteCommandParameterImplCopyWithImpl(
@@ -1295,7 +1295,7 @@ class __$$DeleteCommandParameterImplCopyWithImpl<$Res>
       $Res Function(_$DeleteCommandParameterImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DeleteCommandParameter
+  /// Create a copy of RemoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -1332,7 +1332,7 @@ class _$DeleteCommandParameterImpl extends _DeleteCommandParameter {
 
   @override
   String toString() {
-    return 'DeleteCommandParameter(filePath: $filePath, bucketKind: $bucketKind)';
+    return 'RemoveCommandParameter(filePath: $filePath, bucketKind: $bucketKind)';
   }
 
   @override
@@ -1349,7 +1349,7 @@ class _$DeleteCommandParameterImpl extends _DeleteCommandParameter {
   @override
   int get hashCode => Object.hash(runtimeType, filePath, bucketKind);
 
-  /// Create a copy of DeleteCommandParameter
+  /// Create a copy of RemoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -1359,7 +1359,7 @@ class _$DeleteCommandParameterImpl extends _DeleteCommandParameter {
           _$DeleteCommandParameterImpl>(this, _$identity);
 }
 
-abstract class _DeleteCommandParameter extends DeleteCommandParameter {
+abstract class _DeleteCommandParameter extends RemoveCommandParameter {
   const factory _DeleteCommandParameter(
       {final String filePath,
       final BucketKind bucketKind}) = _$DeleteCommandParameterImpl;
@@ -1370,7 +1370,7 @@ abstract class _DeleteCommandParameter extends DeleteCommandParameter {
   @override
   BucketKind get bucketKind;
 
-  /// Create a copy of DeleteCommandParameter
+  /// Create a copy of RemoveCommandParameter
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

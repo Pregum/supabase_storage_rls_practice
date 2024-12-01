@@ -87,12 +87,12 @@ class CopyCommandParameter
 }
 
 @freezed
-class DeleteCommandParameter
-    with _$DeleteCommandParameter
+class RemoveCommandParameter
+    with _$RemoveCommandParameter
     implements StorageCommandParameter {
-  const DeleteCommandParameter._();
+  const RemoveCommandParameter._();
 
-  const factory DeleteCommandParameter({
+  const factory RemoveCommandParameter({
     @Default('') String filePath,
     @Default(BucketKind.a) final BucketKind bucketKind,
   }) = _DeleteCommandParameter;

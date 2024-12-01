@@ -5,6 +5,7 @@ import 'package:supabase_storage_rls_practice/domain/use_case/copy_use_case.dart
 import 'package:supabase_storage_rls_practice/domain/use_case/download_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/list_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/move_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/remove_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/update_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/upload_use_case.dart';
 
@@ -61,7 +62,11 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         final _ = await ref.read(copyUseCaseProvider).execute(copyParameter);
         // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
-      case DeleteCommandParameter():
+      case RemoveCommandParameter():
+        final removeParameter = state as RemoveCommandParameter;
+        final _ =
+            await ref.read(removeUseCaseProvider).execute(removeParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
     }
   }
