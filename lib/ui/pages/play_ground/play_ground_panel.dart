@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/copy_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/download_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/list_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/move_options_form.dart';
@@ -26,6 +27,7 @@ class PlayGroundPanel extends HookConsumerWidget {
           OperationType.move => const MoveCommandParameter(),
           OperationType.download => const DownloadCommandParameter(),
           OperationType.list => const ListCommandParameter(),
+          OperationType.copy => const CopyCommandParameter(),
           _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
@@ -73,9 +75,10 @@ class PlayGroundPanel extends HookConsumerWidget {
               switch (parameter) {
                 UploadCommandParameter() => const UploadOptionsForm(),
                 UpdateCommandParameter() => const UpdateOptionsForm(),
-                MoveCommandParameter() => const MoveOptionsFrom(),
+                MoveCommandParameter() => const MoveOptionsForm(),
                 DownloadCommandParameter() => const DownloadOptionForm(),
                 ListCommandParameter() => const ListOptionForm(),
+                CopyCommandParameter() => const CopyOptionForm(),
                 DeleteCommandParameter() => throw UnimplementedError(),
               },
               FilledButton(

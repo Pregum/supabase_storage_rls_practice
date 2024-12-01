@@ -8,30 +8,33 @@ import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
+import 'package:path/path.dart' as path;
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_dropdown.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dart';
-import 'package:path/path.dart' as path;
 
-class ListOptionForm extends HookConsumerWidget {
-  const ListOptionForm({super.key});
+class CopyOptionForm extends HookConsumerWidget {
+  const CopyOptionForm({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parentParameter = ref.watch(playGroundViewModelProvider);
     final parameter =
-        useState<ListCommandParameter>(parentParameter as ListCommandParameter);
+        useState<CopyCommandParameter>(parentParameter as CopyCommandParameter);
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
 
-    final limitController = useTextEditingController(text: '1');
-    final offsetController = useTextEditingController(text: '0');
-    final searchTextController = useTextEditingController();
+    final hasNewBucket = useState(false);
 
     useEffect(() {
       // DropdownItemのvalueが空文字だとエラーになるのと、
       // そのまま実行した時に空文字になっているので、初期値を設定している
       final filePath = Assets.images.png.values.first.path;
-      // parameter.value = parameter.value
+      parameter.value = parameter.value.copyWith(
+        sourceFilePath: filePath,
+        destFilePath: '${user?.id}/${path.basename(filePath)}',
+      );
 
       // パラメータの変更をviewModelに通知する
       // 最初はuseStateのみで考えていたが、
@@ -61,15 +64,49 @@ class ListOptionForm extends HookConsumerWidget {
             },
           ),
           const Gap(24),
-          const Text('取得先のディレクトリパスを入力してください'),
+          const Text('コピー元のパスを選択してください'),
           SimpleRadioButton(
             defaultValue: '',
-            filePath: '',
-            onChanged: (newValue) {
-              parameter.value =
-                  parameter.value.copyWith(directoryPath: newValue);
+            filePath: parameter.value.sourceFilePath,
+            onChanged: (value) {
+              parameter.value = parameter.value.copyWith(sourceFilePath: value);
             },
           ),
+          const Gap(24),
+          const Text('コピー先のパスを選択してください'),
+          SimpleRadioButton(
+            defaultValue: '',
+            filePath: parameter.value.destFilePath,
+            onChanged: (value) {
+              parameter.value = parameter.value.copyWith(destFilePath: value);
+            },
+          ),
+          CheckboxListTile(
+            title: const Text('別バケットへ移動する'),
+            value: hasNewBucket.value,
+            onChanged: (bool? value) {
+              if (value != null) {
+                hasNewBucket.value = value;
+                if (value) {
+                  parameter.value = parameter.value.copyWith(
+                    newBucketKind: BucketKind.a,
+                  );
+                } else {
+                  parameter.value =
+                      parameter.value.copyWith(newBucketKind: null);
+                }
+              }
+            },
+          ),
+          if (hasNewBucket.value)
+            SimpleDropdown(
+              defaultValue: parameter.value.bucketKind,
+              items: BucketKind.values,
+              onChanged: (value) {
+                parameter.value =
+                    parameter.value.copyWith(newBucketKind: value);
+              },
+            ),
           const Gap(24),
         ],
       ),

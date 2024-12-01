@@ -87,4 +87,18 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
         );
     return result;
   }
+
+  Future<String> copy({
+    required String bucket,
+    required String fromPath,
+    required String toPath,
+    String? destinationBucket,
+  }) async {
+    final result = await _service.storage.from(bucket).copy(
+          fromPath,
+          toPath,
+          destinationBucket: destinationBucket,
+        );
+    return result;
+  }
 }
