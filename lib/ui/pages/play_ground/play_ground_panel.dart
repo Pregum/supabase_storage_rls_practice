@@ -4,7 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
-import 'package:supabase_storage_rls_practice/ui/pages/play_ground/move_options_from.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/move_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/update_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
@@ -70,6 +70,10 @@ class PlayGroundPanel extends HookConsumerWidget {
                 UploadCommandParameter() => const UploadOptionsForm(),
                 UpdateCommandParameter() => const UpdateOptionsForm(),
                 MoveCommandParameter() => const MoveOptionsFrom(),
+                // TODO: Handle this case.
+                DownloadCommandParameter() => throw UnimplementedError(),
+                // TODO: Handle this case.
+                DeleteCommandParameter() => throw UnimplementedError(),
               },
               FilledButton(
                 child: const Text('実行'),
