@@ -75,6 +75,8 @@ class PlayGroundPanel extends HookConsumerWidget {
                 DownloadCommandParameter() => const DownloadOptionForm(),
                 // TODO: Handle this case.
                 DeleteCommandParameter() => throw UnimplementedError(),
+                // TODO: Handle this case.
+                ListCommandParameter() => throw UnimplementedError(),
               },
               FilledButton(
                 child: const Text('実行'),

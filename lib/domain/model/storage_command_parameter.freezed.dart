@@ -794,6 +794,228 @@ abstract class _DownloadCommandParameter extends DownloadCommandParameter {
 }
 
 /// @nodoc
+mixin _$ListCommandParameter {
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+  String get directoryPath => throw _privateConstructorUsedError;
+  int? get limit => throw _privateConstructorUsedError;
+  int? get offset => throw _privateConstructorUsedError;
+  String? get search => throw _privateConstructorUsedError;
+
+  /// Create a copy of ListCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ListCommandParameterCopyWith<ListCommandParameter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ListCommandParameterCopyWith<$Res> {
+  factory $ListCommandParameterCopyWith(ListCommandParameter value,
+          $Res Function(ListCommandParameter) then) =
+      _$ListCommandParameterCopyWithImpl<$Res, ListCommandParameter>;
+  @useResult
+  $Res call(
+      {BucketKind bucketKind,
+      String directoryPath,
+      int? limit,
+      int? offset,
+      String? search});
+}
+
+/// @nodoc
+class _$ListCommandParameterCopyWithImpl<$Res,
+        $Val extends ListCommandParameter>
+    implements $ListCommandParameterCopyWith<$Res> {
+  _$ListCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ListCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bucketKind = null,
+    Object? directoryPath = null,
+    Object? limit = freezed,
+    Object? offset = freezed,
+    Object? search = freezed,
+  }) {
+    return _then(_value.copyWith(
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      directoryPath: null == directoryPath
+          ? _value.directoryPath
+          : directoryPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      limit: freezed == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      offset: freezed == offset
+          ? _value.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as int?,
+      search: freezed == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ListCommandParameterImplCopyWith<$Res>
+    implements $ListCommandParameterCopyWith<$Res> {
+  factory _$$ListCommandParameterImplCopyWith(_$ListCommandParameterImpl value,
+          $Res Function(_$ListCommandParameterImpl) then) =
+      __$$ListCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {BucketKind bucketKind,
+      String directoryPath,
+      int? limit,
+      int? offset,
+      String? search});
+}
+
+/// @nodoc
+class __$$ListCommandParameterImplCopyWithImpl<$Res>
+    extends _$ListCommandParameterCopyWithImpl<$Res, _$ListCommandParameterImpl>
+    implements _$$ListCommandParameterImplCopyWith<$Res> {
+  __$$ListCommandParameterImplCopyWithImpl(_$ListCommandParameterImpl _value,
+      $Res Function(_$ListCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ListCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? bucketKind = null,
+    Object? directoryPath = null,
+    Object? limit = freezed,
+    Object? offset = freezed,
+    Object? search = freezed,
+  }) {
+    return _then(_$ListCommandParameterImpl(
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      directoryPath: null == directoryPath
+          ? _value.directoryPath
+          : directoryPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      limit: freezed == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int?,
+      offset: freezed == offset
+          ? _value.offset
+          : offset // ignore: cast_nullable_to_non_nullable
+              as int?,
+      search: freezed == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ListCommandParameterImpl extends _ListCommandParameter {
+  const _$ListCommandParameterImpl(
+      {this.bucketKind = BucketKind.a,
+      this.directoryPath = '',
+      this.limit,
+      this.offset,
+      this.search})
+      : super._();
+
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+  @override
+  @JsonKey()
+  final String directoryPath;
+  @override
+  final int? limit;
+  @override
+  final int? offset;
+  @override
+  final String? search;
+
+  @override
+  String toString() {
+    return 'ListCommandParameter(bucketKind: $bucketKind, directoryPath: $directoryPath, limit: $limit, offset: $offset, search: $search)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ListCommandParameterImpl &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind) &&
+            (identical(other.directoryPath, directoryPath) ||
+                other.directoryPath == directoryPath) &&
+            (identical(other.limit, limit) || other.limit == limit) &&
+            (identical(other.offset, offset) || other.offset == offset) &&
+            (identical(other.search, search) || other.search == search));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, bucketKind, directoryPath, limit, offset, search);
+
+  /// Create a copy of ListCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ListCommandParameterImplCopyWith<_$ListCommandParameterImpl>
+      get copyWith =>
+          __$$ListCommandParameterImplCopyWithImpl<_$ListCommandParameterImpl>(
+              this, _$identity);
+}
+
+abstract class _ListCommandParameter extends ListCommandParameter {
+  const factory _ListCommandParameter(
+      {final BucketKind bucketKind,
+      final String directoryPath,
+      final int? limit,
+      final int? offset,
+      final String? search}) = _$ListCommandParameterImpl;
+  const _ListCommandParameter._() : super._();
+
+  @override
+  BucketKind get bucketKind;
+  @override
+  String get directoryPath;
+  @override
+  int? get limit;
+  @override
+  int? get offset;
+  @override
+  String? get search;
+
+  /// Create a copy of ListCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ListCommandParameterImplCopyWith<_$ListCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DeleteCommandParameter {
   String get filePath => throw _privateConstructorUsedError;
   BucketKind get bucketKind => throw _privateConstructorUsedError;

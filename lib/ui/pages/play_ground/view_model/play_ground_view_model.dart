@@ -50,6 +50,8 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         break;
       case DeleteCommandParameter():
         break;
+      case ListCommandParameter():
+      // TODO: Handle this case.
     }
   }
 }

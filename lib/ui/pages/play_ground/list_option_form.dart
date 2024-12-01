@@ -12,14 +12,14 @@ import 'package:supabase_storage_rls_practice/ui/widgets/simple_dropdown.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dart';
 import 'package:path/path.dart' as path;
 
-class DownloadOptionForm extends HookConsumerWidget {
-  const DownloadOptionForm({super.key});
+class ListOptionForm extends HookConsumerWidget {
+  const ListOptionForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parentParameter = ref.watch(playGroundViewModelProvider);
-    final parameter = useState<DownloadCommandParameter>(
-        parentParameter as DownloadCommandParameter);
+    final parameter = useState<ListCommandParameter>(
+        parentParameter as ListCommandParameter);
     final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
 
@@ -27,9 +27,7 @@ class DownloadOptionForm extends HookConsumerWidget {
       // DropdownItemのvalueが空文字だとエラーになるのと、
       // そのまま実行した時に空文字になっているので、初期値を設定している
       final filePath = Assets.images.png.values.first.path;
-      parameter.value = parameter.value.copyWith(
-        filePath: '${user?.id}/${path.basename(filePath)}',
-      );
+      // parameter.value = parameter.value
 
       // パラメータの変更をviewModelに通知する
       // 最初はuseStateのみで考えていたが、
@@ -59,12 +57,12 @@ class DownloadOptionForm extends HookConsumerWidget {
             },
           ),
           const Gap(24),
-          const Text('移動先のパスを入力してください'),
+          const Text('取得先のディレクトリパスを入力してください'),
           SimpleRadioButton(
             defaultValue: '',
-            filePath: parameter.value.filePath,
+            filePath: parameter.value.directoryPath,
             onChanged: (value) {
-              parameter.value = parameter.value.copyWith(filePath: value);
+              parameter.value = parameter.value.copyWith(directoryPath: );
             },
           ),
           const Gap(24),
