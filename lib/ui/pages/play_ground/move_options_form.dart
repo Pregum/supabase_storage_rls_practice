@@ -12,8 +12,8 @@ import 'package:path/path.dart' as path;
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_dropdown.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dart';
 
-class MoveOptionsFrom extends HookConsumerWidget {
-  const MoveOptionsFrom({
+class MoveOptionsForm extends HookConsumerWidget {
+  const MoveOptionsForm({
     super.key,
   });
 

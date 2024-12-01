@@ -60,7 +60,8 @@ class DownloadCommandParameter
 }
 
 @freezed
-class ListCommandParameter with _$ListCommandParameter
+class ListCommandParameter
+    with _$ListCommandParameter
     implements StorageCommandParameter {
   const ListCommandParameter._();
   const factory ListCommandParameter({
@@ -70,6 +71,19 @@ class ListCommandParameter with _$ListCommandParameter
     int? offset,
     String? search,
   }) = _ListCommandParameter;
+}
+
+@freezed
+class CopyCommandParameter
+    with _$CopyCommandParameter
+    implements StorageCommandParameter {
+  const CopyCommandParameter._();
+  const factory CopyCommandParameter({
+    @Default('') String sourceFilePath,
+    @Default('') String destFilePath,
+    @Default(BucketKind.a) BucketKind bucketKind,
+    BucketKind? newBucketKind,
+  }) = _CopyCommandParameter;
 }
 
 @freezed

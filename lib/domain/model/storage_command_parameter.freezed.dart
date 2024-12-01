@@ -1016,6 +1016,211 @@ abstract class _ListCommandParameter extends ListCommandParameter {
 }
 
 /// @nodoc
+mixin _$CopyCommandParameter {
+  String get sourceFilePath => throw _privateConstructorUsedError;
+  String get destFilePath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+  BucketKind? get newBucketKind => throw _privateConstructorUsedError;
+
+  /// Create a copy of CopyCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CopyCommandParameterCopyWith<CopyCommandParameter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CopyCommandParameterCopyWith<$Res> {
+  factory $CopyCommandParameterCopyWith(CopyCommandParameter value,
+          $Res Function(CopyCommandParameter) then) =
+      _$CopyCommandParameterCopyWithImpl<$Res, CopyCommandParameter>;
+  @useResult
+  $Res call(
+      {String sourceFilePath,
+      String destFilePath,
+      BucketKind bucketKind,
+      BucketKind? newBucketKind});
+}
+
+/// @nodoc
+class _$CopyCommandParameterCopyWithImpl<$Res,
+        $Val extends CopyCommandParameter>
+    implements $CopyCommandParameterCopyWith<$Res> {
+  _$CopyCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of CopyCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sourceFilePath = null,
+    Object? destFilePath = null,
+    Object? bucketKind = null,
+    Object? newBucketKind = freezed,
+  }) {
+    return _then(_value.copyWith(
+      sourceFilePath: null == sourceFilePath
+          ? _value.sourceFilePath
+          : sourceFilePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      destFilePath: null == destFilePath
+          ? _value.destFilePath
+          : destFilePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      newBucketKind: freezed == newBucketKind
+          ? _value.newBucketKind
+          : newBucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CopyCommandParameterImplCopyWith<$Res>
+    implements $CopyCommandParameterCopyWith<$Res> {
+  factory _$$CopyCommandParameterImplCopyWith(_$CopyCommandParameterImpl value,
+          $Res Function(_$CopyCommandParameterImpl) then) =
+      __$$CopyCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String sourceFilePath,
+      String destFilePath,
+      BucketKind bucketKind,
+      BucketKind? newBucketKind});
+}
+
+/// @nodoc
+class __$$CopyCommandParameterImplCopyWithImpl<$Res>
+    extends _$CopyCommandParameterCopyWithImpl<$Res, _$CopyCommandParameterImpl>
+    implements _$$CopyCommandParameterImplCopyWith<$Res> {
+  __$$CopyCommandParameterImplCopyWithImpl(_$CopyCommandParameterImpl _value,
+      $Res Function(_$CopyCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CopyCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sourceFilePath = null,
+    Object? destFilePath = null,
+    Object? bucketKind = null,
+    Object? newBucketKind = freezed,
+  }) {
+    return _then(_$CopyCommandParameterImpl(
+      sourceFilePath: null == sourceFilePath
+          ? _value.sourceFilePath
+          : sourceFilePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      destFilePath: null == destFilePath
+          ? _value.destFilePath
+          : destFilePath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      newBucketKind: freezed == newBucketKind
+          ? _value.newBucketKind
+          : newBucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CopyCommandParameterImpl extends _CopyCommandParameter {
+  const _$CopyCommandParameterImpl(
+      {this.sourceFilePath = '',
+      this.destFilePath = '',
+      this.bucketKind = BucketKind.a,
+      this.newBucketKind})
+      : super._();
+
+  @override
+  @JsonKey()
+  final String sourceFilePath;
+  @override
+  @JsonKey()
+  final String destFilePath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+  @override
+  final BucketKind? newBucketKind;
+
+  @override
+  String toString() {
+    return 'CopyCommandParameter(sourceFilePath: $sourceFilePath, destFilePath: $destFilePath, bucketKind: $bucketKind, newBucketKind: $newBucketKind)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CopyCommandParameterImpl &&
+            (identical(other.sourceFilePath, sourceFilePath) ||
+                other.sourceFilePath == sourceFilePath) &&
+            (identical(other.destFilePath, destFilePath) ||
+                other.destFilePath == destFilePath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind) &&
+            (identical(other.newBucketKind, newBucketKind) ||
+                other.newBucketKind == newBucketKind));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, sourceFilePath, destFilePath, bucketKind, newBucketKind);
+
+  /// Create a copy of CopyCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CopyCommandParameterImplCopyWith<_$CopyCommandParameterImpl>
+      get copyWith =>
+          __$$CopyCommandParameterImplCopyWithImpl<_$CopyCommandParameterImpl>(
+              this, _$identity);
+}
+
+abstract class _CopyCommandParameter extends CopyCommandParameter {
+  const factory _CopyCommandParameter(
+      {final String sourceFilePath,
+      final String destFilePath,
+      final BucketKind bucketKind,
+      final BucketKind? newBucketKind}) = _$CopyCommandParameterImpl;
+  const _CopyCommandParameter._() : super._();
+
+  @override
+  String get sourceFilePath;
+  @override
+  String get destFilePath;
+  @override
+  BucketKind get bucketKind;
+  @override
+  BucketKind? get newBucketKind;
+
+  /// Create a copy of CopyCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CopyCommandParameterImplCopyWith<_$CopyCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$DeleteCommandParameter {
   String get filePath => throw _privateConstructorUsedError;
   BucketKind get bucketKind => throw _privateConstructorUsedError;
