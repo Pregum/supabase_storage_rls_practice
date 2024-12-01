@@ -6,11 +6,9 @@ import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
-import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_dropdown.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dart';
-import 'package:path/path.dart' as path;
 
 class ListOptionForm extends HookConsumerWidget {
   const ListOptionForm({super.key});
@@ -20,17 +18,17 @@ class ListOptionForm extends HookConsumerWidget {
     final parentParameter = ref.watch(playGroundViewModelProvider);
     final parameter =
         useState<ListCommandParameter>(parentParameter as ListCommandParameter);
-    final user = ref.watch(
+    ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
 
-    final limitController = useTextEditingController(text: '1');
-    final offsetController = useTextEditingController(text: '0');
-    final searchTextController = useTextEditingController();
+    // final limitController = useTextEditingController(text: '1');
+    // final offsetController = useTextEditingController(text: '0');
+    // final searchTextController = useTextEditingController();
 
     useEffect(() {
       // DropdownItemのvalueが空文字だとエラーになるのと、
       // そのまま実行した時に空文字になっているので、初期値を設定している
-      final filePath = Assets.images.png.values.first.path;
+      // final filePath = Assets.images.png.values.first.path;
       // parameter.value = parameter.value
 
       // パラメータの変更をviewModelに通知する
