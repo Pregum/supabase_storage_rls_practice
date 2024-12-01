@@ -14,6 +14,7 @@ import 'package:supabase_storage_rls_practice/ui/pages/play_ground/move_options_
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/remove_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/update_options_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_options_form.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/upload_to_signed_url_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
 
 class PlayGroundPanel extends HookConsumerWidget {
@@ -39,6 +40,8 @@ class PlayGroundPanel extends HookConsumerWidget {
             const CreateSignedUrlsCommandParameter(),
           OperationType.createSignedUploadUrl =>
             const CreateSignedUploadUrlCommandParameter(),
+          OperationType.uploadToSignedUrl =>
+            const UploadToSignedUrlCommandParameter(),
           _ => const UpdateCommandParameter(),
         };
         ref.read(playGroundViewModelProvider.notifier).update(param);
@@ -97,6 +100,8 @@ class PlayGroundPanel extends HookConsumerWidget {
                   const CreateSignedUrlsOptionForm(),
                 CreateSignedUploadUrlCommandParameter() =>
                   const CreateSignedUploadUrlOptionForm(),
+                UploadToSignedUrlCommandParameter() =>
+                  const UploadToSignedUrlOptionForm(),
               },
               FilledButton(
                 child: const Text('実行'),

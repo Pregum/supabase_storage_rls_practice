@@ -1949,3 +1949,225 @@ abstract class _CreateSignedUploadUrlCommandParameter
           _$CreateSignedUploadUrlCommandParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$UploadToSignedUrlCommandParameter {
+  /// アップロード先のパス
+  String get destinationPath => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+  String get token => throw _privateConstructorUsedError;
+
+  /// アップロードに使用するバイナリデータのパス
+  String get dataPathToUpload => throw _privateConstructorUsedError;
+
+  /// Create a copy of UploadToSignedUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UploadToSignedUrlCommandParameterCopyWith<UploadToSignedUrlCommandParameter>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UploadToSignedUrlCommandParameterCopyWith<$Res> {
+  factory $UploadToSignedUrlCommandParameterCopyWith(
+          UploadToSignedUrlCommandParameter value,
+          $Res Function(UploadToSignedUrlCommandParameter) then) =
+      _$UploadToSignedUrlCommandParameterCopyWithImpl<$Res,
+          UploadToSignedUrlCommandParameter>;
+  @useResult
+  $Res call(
+      {String destinationPath,
+      BucketKind bucketKind,
+      String token,
+      String dataPathToUpload});
+}
+
+/// @nodoc
+class _$UploadToSignedUrlCommandParameterCopyWithImpl<$Res,
+        $Val extends UploadToSignedUrlCommandParameter>
+    implements $UploadToSignedUrlCommandParameterCopyWith<$Res> {
+  _$UploadToSignedUrlCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of UploadToSignedUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? destinationPath = null,
+    Object? bucketKind = null,
+    Object? token = null,
+    Object? dataPathToUpload = null,
+  }) {
+    return _then(_value.copyWith(
+      destinationPath: null == destinationPath
+          ? _value.destinationPath
+          : destinationPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      dataPathToUpload: null == dataPathToUpload
+          ? _value.dataPathToUpload
+          : dataPathToUpload // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$UploadToSignedUrlCommandParameterImplCopyWith<$Res>
+    implements $UploadToSignedUrlCommandParameterCopyWith<$Res> {
+  factory _$$UploadToSignedUrlCommandParameterImplCopyWith(
+          _$UploadToSignedUrlCommandParameterImpl value,
+          $Res Function(_$UploadToSignedUrlCommandParameterImpl) then) =
+      __$$UploadToSignedUrlCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String destinationPath,
+      BucketKind bucketKind,
+      String token,
+      String dataPathToUpload});
+}
+
+/// @nodoc
+class __$$UploadToSignedUrlCommandParameterImplCopyWithImpl<$Res>
+    extends _$UploadToSignedUrlCommandParameterCopyWithImpl<$Res,
+        _$UploadToSignedUrlCommandParameterImpl>
+    implements _$$UploadToSignedUrlCommandParameterImplCopyWith<$Res> {
+  __$$UploadToSignedUrlCommandParameterImplCopyWithImpl(
+      _$UploadToSignedUrlCommandParameterImpl _value,
+      $Res Function(_$UploadToSignedUrlCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UploadToSignedUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? destinationPath = null,
+    Object? bucketKind = null,
+    Object? token = null,
+    Object? dataPathToUpload = null,
+  }) {
+    return _then(_$UploadToSignedUrlCommandParameterImpl(
+      destinationPath: null == destinationPath
+          ? _value.destinationPath
+          : destinationPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as String,
+      dataPathToUpload: null == dataPathToUpload
+          ? _value.dataPathToUpload
+          : dataPathToUpload // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UploadToSignedUrlCommandParameterImpl
+    extends _UploadToSignedUrlCommandParameter {
+  const _$UploadToSignedUrlCommandParameterImpl(
+      {this.destinationPath = '',
+      this.bucketKind = BucketKind.a,
+      this.token = '',
+      this.dataPathToUpload = ''})
+      : super._();
+
+  /// アップロード先のパス
+  @override
+  @JsonKey()
+  final String destinationPath;
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+  @override
+  @JsonKey()
+  final String token;
+
+  /// アップロードに使用するバイナリデータのパス
+  @override
+  @JsonKey()
+  final String dataPathToUpload;
+
+  @override
+  String toString() {
+    return 'UploadToSignedUrlCommandParameter(destinationPath: $destinationPath, bucketKind: $bucketKind, token: $token, dataPathToUpload: $dataPathToUpload)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UploadToSignedUrlCommandParameterImpl &&
+            (identical(other.destinationPath, destinationPath) ||
+                other.destinationPath == destinationPath) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind) &&
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.dataPathToUpload, dataPathToUpload) ||
+                other.dataPathToUpload == dataPathToUpload));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, destinationPath, bucketKind, token, dataPathToUpload);
+
+  /// Create a copy of UploadToSignedUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UploadToSignedUrlCommandParameterImplCopyWith<
+          _$UploadToSignedUrlCommandParameterImpl>
+      get copyWith => __$$UploadToSignedUrlCommandParameterImplCopyWithImpl<
+          _$UploadToSignedUrlCommandParameterImpl>(this, _$identity);
+}
+
+abstract class _UploadToSignedUrlCommandParameter
+    extends UploadToSignedUrlCommandParameter {
+  const factory _UploadToSignedUrlCommandParameter(
+      {final String destinationPath,
+      final BucketKind bucketKind,
+      final String token,
+      final String dataPathToUpload}) = _$UploadToSignedUrlCommandParameterImpl;
+  const _UploadToSignedUrlCommandParameter._() : super._();
+
+  /// アップロード先のパス
+  @override
+  String get destinationPath;
+  @override
+  BucketKind get bucketKind;
+  @override
+  String get token;
+
+  /// アップロードに使用するバイナリデータのパス
+  @override
+  String get dataPathToUpload;
+
+  /// Create a copy of UploadToSignedUrlCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UploadToSignedUrlCommandParameterImplCopyWith<
+          _$UploadToSignedUrlCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}

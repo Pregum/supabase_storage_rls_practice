@@ -137,4 +137,24 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
         );
     return result;
   }
+
+  Future<String> uploadBinaryToSignedUrl({
+    required String bucket,
+    required String path,
+    required String token,
+    required Uint8List data,
+    FileOptions? options,
+    int? retryAttempts,
+    StorageRetryController? retryController,
+  }) async {
+    final result = await _service.storage.from(bucket).uploadBinaryToSignedUrl(
+          path,
+          token,
+          data,
+          options ?? const FileOptions(),
+          retryAttempts,
+          retryController,
+        );
+    return result;
+  }
 }

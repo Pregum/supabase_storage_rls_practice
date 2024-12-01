@@ -138,3 +138,19 @@ class CreateSignedUploadUrlCommandParameter
     @Default(60) int expiresIn,
   }) = _CreateSignedUploadUrlCommandParameter;
 }
+
+@freezed
+class UploadToSignedUrlCommandParameter
+    with _$UploadToSignedUrlCommandParameter
+    implements StorageCommandParameter {
+  const UploadToSignedUrlCommandParameter._();
+  const factory UploadToSignedUrlCommandParameter({
+    /// アップロード先のパス
+    @Default('') String destinationPath,
+    @Default(BucketKind.a) BucketKind bucketKind,
+    @Default('') String token,
+
+    /// アップロードに使用するバイナリデータのパス
+    @Default('') String dataPathToUpload,
+  }) = _UploadToSignedUrlCommandParameter;
+}
