@@ -6,6 +6,7 @@ import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/service/command_log_stream_service.dart';
 import 'package:supabase_storage_rls_practice/domain/model/command_result.dart';
 import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/bucket_info/bucket_info_panel.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/log_list/log_list_panel.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/log_list/view_model/log_list_view_model.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/play_ground_panel.dart';
@@ -75,19 +76,15 @@ class PlayGroundPage extends HookConsumerWidget {
           Expanded(
             child: TabBarView(
               controller: tabController,
-              children: [
-                // Container(
-                //   child: Text('プレイグラウンド'),
-                // ),
-                const PlayGroundPanel(
+              children: const [
+                PlayGroundPanel(
                   key: PageStorageKey(0),
                 ),
-                const LogListPanel(
+                LogListPanel(
                   key: PageStorageKey(1),
                 ),
-                Container(
-                  key: const PageStorageKey(2),
-                  child: Text('バケットの状態'),
+                BucketInfoPanel(
+                  key: PageStorageKey(2),
                 ),
               ],
             ),
