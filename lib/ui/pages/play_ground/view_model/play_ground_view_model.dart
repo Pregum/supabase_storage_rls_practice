@@ -2,7 +2,9 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/copy_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_upload_url_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_url_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_urls_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/download_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/list_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/move_use_case.dart';
@@ -78,7 +80,21 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
       case CreateSignedUrlsCommandParameter():
-      // TODO: Handle this case.
+        final createSignedUrlsParameter =
+            state as CreateSignedUrlsCommandParameter;
+        final _ = await ref
+            .read(createSignedUrlsUseCaseProvider)
+            .execute(createSignedUrlsParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
+        break;
+      case CreateSignedUploadUrlCommandParameter():
+        final createSignedUploadUrlParameter =
+            state as CreateSignedUploadUrlCommandParameter;
+        final _ = await ref
+            .read(createSignedUploadUrlUseCaseProvider)
+            .execute(createSignedUploadUrlParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
+        break;
     }
   }
 }

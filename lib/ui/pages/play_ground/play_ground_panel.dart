@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/domain/model/operation_type.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/copy_option_form.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/play_ground/create_signed_upload_url_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/create_signed_url_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/create_signed_urls_option_form.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/download_option_form.dart';
@@ -92,6 +93,8 @@ class PlayGroundPanel extends HookConsumerWidget {
                   const CreateSignedUrlOptionForm(),
                 CreateSignedUrlsCommandParameter() =>
                   const CreateSignedUrlsOptionForm(),
+                CreateSignedUploadUrlCommandParameter() =>
+                  const CreateSignedUploadUrlOptionForm(),
               },
               FilledButton(
                 child: const Text('実行'),
