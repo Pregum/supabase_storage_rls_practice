@@ -2,9 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
-import 'package:supabase_storage_rls_practice/ui/pages/login/login_page.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/play_ground_panel.dart';
 
 @RoutePage()

@@ -6,7 +6,7 @@ part of 'upload_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$uploadUseCaseHash() => r'0bea70f5972341a434e00ae99df3cb42e35870c6';
+String _$uploadUseCaseHash() => r'585992a9c7ea8f4fe12dff2ee36c57848b1f7289';
 
 /// See also [UploadUseCase].
 @ProviderFor(UploadUseCase)
@@ -17,10 +17,10 @@ final uploadUseCaseProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$uploadUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
+  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseServiceProvider,
-    ...?supabaseServiceProvider.allTransitiveDependencies
+    supabaseStorageRepositoryProvider,
+    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
   },
 );
 

@@ -6,7 +6,7 @@ part of 'download_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$downloadUseCaseHash() => r'af0c53a5ab3bf26137532fe30f7ccce5a93079c3';
+String _$downloadUseCaseHash() => r'f093cf98377bed5a1a4c90c94a25908e7359036c';
 
 /// See also [DownloadUseCase].
 @ProviderFor(DownloadUseCase)
@@ -17,10 +17,10 @@ final downloadUseCaseProvider =
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
       : _$downloadUseCaseHash,
-  dependencies: <ProviderOrFamily>[supabaseServiceProvider],
+  dependencies: <ProviderOrFamily>[supabaseStorageRepositoryProvider],
   allTransitiveDependencies: <ProviderOrFamily>{
-    supabaseServiceProvider,
-    ...?supabaseServiceProvider.allTransitiveDependencies
+    supabaseStorageRepositoryProvider,
+    ...?supabaseStorageRepositoryProvider.allTransitiveDependencies
   },
 );
 

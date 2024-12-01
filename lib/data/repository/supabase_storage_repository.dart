@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -98,6 +97,20 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
           fromPath,
           toPath,
           destinationBucket: destinationBucket,
+        );
+    return result;
+  }
+
+  Future<String> createSignedUrl({
+    required String bucket,
+    required String path,
+    required int expiresInSeconds,
+    TransformOptions? options,
+  }) async {
+    final result = await _service.storage.from(bucket).createSignedUrl(
+          path,
+          expiresInSeconds,
+          transform: options,
         );
     return result;
   }

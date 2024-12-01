@@ -2,6 +2,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/copy_use_case.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/create_signed_url_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/download_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/list_use_case.dart';
 import 'package:supabase_storage_rls_practice/domain/use_case/move_use_case.dart';
@@ -66,6 +67,14 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         final removeParameter = state as RemoveCommandParameter;
         final _ =
             await ref.read(removeUseCaseProvider).execute(removeParameter);
+        // TODO: ここでリザルト用のstreamへ結果を投げる
+        break;
+      case CreateSignedUrlCommandParameter():
+        final createSignedUrlParameter =
+            state as CreateSignedUrlCommandParameter;
+        final _ = await ref
+            .read(createSignedUrlUseCaseProvider)
+            .execute(createSignedUrlParameter);
         // TODO: ここでリザルト用のstreamへ結果を投げる
         break;
     }

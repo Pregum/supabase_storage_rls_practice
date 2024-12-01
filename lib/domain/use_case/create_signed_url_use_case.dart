@@ -1,31 +1,32 @@
+import 'dart:typed_data';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
 
-part 'remove_use_case.g.dart';
+part 'create_signed_url_use_case.g.dart';
 
 @Riverpod(dependencies: [SupabaseStorageRepository])
-class RemoveUseCase extends _$RemoveUseCase {
+class CreateSignedUrlUseCase extends _$CreateSignedUrlUseCase {
   late final SupabaseStorageRepository _repository;
 
   @override
-  RemoveUseCase build() {
+  CreateSignedUrlUseCase build() {
     final repository = ref.read(supabaseStorageRepositoryProvider);
     _repository = repository;
     return this;
   }
 
-  Future<List<FileObject>> execute(RemoveCommandParameter parameter) async {
+  Future<Uint8List> execute(CreateSignedUrlCommandParameter parameter) async {
     // クエリを生成する
     final bucketName = parameter.bucketKind.name;
-    final paths = [parameter.filePath];
     logger.d('parameter: $parameter');
-    final results = await _repository.remove(
+    final result = await _repository.download(
       bucket: bucketName,
-      paths: paths,
+      filePath: parameter.filePath,
     );
-    return results;
+    logger.d('result: $result');
+    return result;
   }
 }

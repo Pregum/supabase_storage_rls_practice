@@ -6,30 +6,30 @@ import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
 import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 import 'package:supabase_storage_rls_practice/ui/pages/play_ground/view_model/play_ground_view_model.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_dropdown.dart';
 import 'package:supabase_storage_rls_practice/ui/widgets/simple_radio_button.dart';
+import 'package:path/path.dart' as path;
 
-class ListOptionForm extends HookConsumerWidget {
-  const ListOptionForm({super.key});
+class CreateSignedUrlOptionForm extends HookConsumerWidget {
+  const CreateSignedUrlOptionForm({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final parentParameter = ref.watch(playGroundViewModelProvider);
-    final parameter =
-        useState<ListCommandParameter>(parentParameter as ListCommandParameter);
-    ref.watch(
+    final parameter = useState<CreateSignedUrlCommandParameter>(
+        parentParameter as CreateSignedUrlCommandParameter);
+    final user = ref.watch(
         supabaseServiceProvider.select((value) => value.auth.currentUser));
-
-    // final limitController = useTextEditingController(text: '1');
-    // final offsetController = useTextEditingController(text: '0');
-    // final searchTextController = useTextEditingController();
 
     useEffect(() {
       // DropdownItemのvalueが空文字だとエラーになるのと、
       // そのまま実行した時に空文字になっているので、初期値を設定している
-      // final filePath = Assets.images.png.values.first.path;
-      // parameter.value = parameter.value
+      final filePath = Assets.images.png.values.first.path;
+      parameter.value = parameter.value.copyWith(
+        filePath: '${user?.id}/${path.basename(filePath)}',
+      );
 
       // パラメータの変更をviewModelに通知する
       // 最初はuseStateのみで考えていたが、
@@ -59,13 +59,12 @@ class ListOptionForm extends HookConsumerWidget {
             },
           ),
           const Gap(24),
-          const Text('取得先のディレクトリパスを入力してください'),
+          const Text('urlを作成するパスを入力してください'),
           SimpleRadioButton(
             defaultValue: '',
-            filePath: '',
-            onChanged: (newValue) {
-              parameter.value =
-                  parameter.value.copyWith(directoryPath: newValue);
+            filePath: parameter.value.filePath,
+            onChanged: (value) {
+              parameter.value = parameter.value.copyWith(filePath: value);
             },
           ),
           const Gap(24),
