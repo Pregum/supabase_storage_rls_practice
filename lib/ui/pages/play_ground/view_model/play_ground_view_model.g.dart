@@ -7,7 +7,7 @@ part of 'play_ground_view_model.dart';
 // **************************************************************************
 
 String _$playGroundViewModelHash() =>
-    r'daae31d70f6355fe304010c97873ac2b035b56a2';
+    r'610ad785608463d49bfe252a24a697aca41d9a52';
 
 /// See also [PlayGroundViewModel].
 @ProviderFor(PlayGroundViewModel)

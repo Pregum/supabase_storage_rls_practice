@@ -111,3 +111,17 @@ class CreateSignedUrlCommandParameter
     @Default(60) int expiresIn,
   }) = _CreateSignedUrlCommandParameter;
 }
+
+@freezed
+class CreateSignedUrlsCommandParameter
+    with _$CreateSignedUrlsCommandParameter
+    implements StorageCommandParameter {
+  const CreateSignedUrlsCommandParameter._();
+  const factory CreateSignedUrlsCommandParameter({
+    @Default([]) List<String> filePaths,
+    @Default(BucketKind.a) final BucketKind bucketKind,
+
+    /// 期限切れになる秒数 e.g.) 60 = 1分
+    @Default(60) int expiresIn,
+  }) = _CreateSignedUrlsCommandParameter;
+}

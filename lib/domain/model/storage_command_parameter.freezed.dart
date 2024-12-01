@@ -1566,3 +1566,202 @@ abstract class _CreateSignedUrlCommandParameter
           _$CreateSignedUrlCommandParameterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+/// @nodoc
+mixin _$CreateSignedUrlsCommandParameter {
+  List<String> get filePaths => throw _privateConstructorUsedError;
+  BucketKind get bucketKind => throw _privateConstructorUsedError;
+
+  /// 期限切れになる秒数 e.g.) 60 = 1分
+  int get expiresIn => throw _privateConstructorUsedError;
+
+  /// Create a copy of CreateSignedUrlsCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $CreateSignedUrlsCommandParameterCopyWith<CreateSignedUrlsCommandParameter>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CreateSignedUrlsCommandParameterCopyWith<$Res> {
+  factory $CreateSignedUrlsCommandParameterCopyWith(
+          CreateSignedUrlsCommandParameter value,
+          $Res Function(CreateSignedUrlsCommandParameter) then) =
+      _$CreateSignedUrlsCommandParameterCopyWithImpl<$Res,
+          CreateSignedUrlsCommandParameter>;
+  @useResult
+  $Res call({List<String> filePaths, BucketKind bucketKind, int expiresIn});
+}
+
+/// @nodoc
+class _$CreateSignedUrlsCommandParameterCopyWithImpl<$Res,
+        $Val extends CreateSignedUrlsCommandParameter>
+    implements $CreateSignedUrlsCommandParameterCopyWith<$Res> {
+  _$CreateSignedUrlsCommandParameterCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of CreateSignedUrlsCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePaths = null,
+    Object? bucketKind = null,
+    Object? expiresIn = null,
+  }) {
+    return _then(_value.copyWith(
+      filePaths: null == filePaths
+          ? _value.filePaths
+          : filePaths // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      expiresIn: null == expiresIn
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CreateSignedUrlsCommandParameterImplCopyWith<$Res>
+    implements $CreateSignedUrlsCommandParameterCopyWith<$Res> {
+  factory _$$CreateSignedUrlsCommandParameterImplCopyWith(
+          _$CreateSignedUrlsCommandParameterImpl value,
+          $Res Function(_$CreateSignedUrlsCommandParameterImpl) then) =
+      __$$CreateSignedUrlsCommandParameterImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<String> filePaths, BucketKind bucketKind, int expiresIn});
+}
+
+/// @nodoc
+class __$$CreateSignedUrlsCommandParameterImplCopyWithImpl<$Res>
+    extends _$CreateSignedUrlsCommandParameterCopyWithImpl<$Res,
+        _$CreateSignedUrlsCommandParameterImpl>
+    implements _$$CreateSignedUrlsCommandParameterImplCopyWith<$Res> {
+  __$$CreateSignedUrlsCommandParameterImplCopyWithImpl(
+      _$CreateSignedUrlsCommandParameterImpl _value,
+      $Res Function(_$CreateSignedUrlsCommandParameterImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CreateSignedUrlsCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? filePaths = null,
+    Object? bucketKind = null,
+    Object? expiresIn = null,
+  }) {
+    return _then(_$CreateSignedUrlsCommandParameterImpl(
+      filePaths: null == filePaths
+          ? _value._filePaths
+          : filePaths // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      bucketKind: null == bucketKind
+          ? _value.bucketKind
+          : bucketKind // ignore: cast_nullable_to_non_nullable
+              as BucketKind,
+      expiresIn: null == expiresIn
+          ? _value.expiresIn
+          : expiresIn // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CreateSignedUrlsCommandParameterImpl
+    extends _CreateSignedUrlsCommandParameter {
+  const _$CreateSignedUrlsCommandParameterImpl(
+      {final List<String> filePaths = const [],
+      this.bucketKind = BucketKind.a,
+      this.expiresIn = 60})
+      : _filePaths = filePaths,
+        super._();
+
+  final List<String> _filePaths;
+  @override
+  @JsonKey()
+  List<String> get filePaths {
+    if (_filePaths is EqualUnmodifiableListView) return _filePaths;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_filePaths);
+  }
+
+  @override
+  @JsonKey()
+  final BucketKind bucketKind;
+
+  /// 期限切れになる秒数 e.g.) 60 = 1分
+  @override
+  @JsonKey()
+  final int expiresIn;
+
+  @override
+  String toString() {
+    return 'CreateSignedUrlsCommandParameter(filePaths: $filePaths, bucketKind: $bucketKind, expiresIn: $expiresIn)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateSignedUrlsCommandParameterImpl &&
+            const DeepCollectionEquality()
+                .equals(other._filePaths, _filePaths) &&
+            (identical(other.bucketKind, bucketKind) ||
+                other.bucketKind == bucketKind) &&
+            (identical(other.expiresIn, expiresIn) ||
+                other.expiresIn == expiresIn));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_filePaths), bucketKind, expiresIn);
+
+  /// Create a copy of CreateSignedUrlsCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateSignedUrlsCommandParameterImplCopyWith<
+          _$CreateSignedUrlsCommandParameterImpl>
+      get copyWith => __$$CreateSignedUrlsCommandParameterImplCopyWithImpl<
+          _$CreateSignedUrlsCommandParameterImpl>(this, _$identity);
+}
+
+abstract class _CreateSignedUrlsCommandParameter
+    extends CreateSignedUrlsCommandParameter {
+  const factory _CreateSignedUrlsCommandParameter(
+      {final List<String> filePaths,
+      final BucketKind bucketKind,
+      final int expiresIn}) = _$CreateSignedUrlsCommandParameterImpl;
+  const _CreateSignedUrlsCommandParameter._() : super._();
+
+  @override
+  List<String> get filePaths;
+  @override
+  BucketKind get bucketKind;
+
+  /// 期限切れになる秒数 e.g.) 60 = 1分
+  @override
+  int get expiresIn;
+
+  /// Create a copy of CreateSignedUrlsCommandParameter
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$CreateSignedUrlsCommandParameterImplCopyWith<
+          _$CreateSignedUrlsCommandParameterImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
