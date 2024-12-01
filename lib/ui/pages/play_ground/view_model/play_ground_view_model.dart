@@ -41,12 +41,14 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
   Future<void> _executeCommand() async {
     final logStreamServiceNotifier =
         ref.read(commandLogStreamServiceProvider.notifier);
+    var failedCommand = '';
     try {
       switch (state) {
         // ダブルディスパッチで汎用的に実装するか迷ったが
         // 拡張性はそこまで優先度が高くないと判断し、switchで愚直に実装する
         case UploadCommandParameter():
           final uploadParameter = state as UploadCommandParameter;
+          failedCommand = buildCommandText(state);
           await ref.read(uploadUseCaseProvider).execute(uploadParameter);
           final commandResult = CommandResult.success(
             command: buildCommandText(state),
@@ -56,6 +58,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case UpdateCommandParameter():
           final updateParameter = state as UpdateCommandParameter;
+          failedCommand = buildCommandText(state);
           await ref.read(updateUseCaseProvider).execute(updateParameter);
           final commandResult = CommandResult.success(
             command: buildCommandText(state),
@@ -65,6 +68,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case MoveCommandParameter():
           final moveParameter = state as MoveCommandParameter;
+          failedCommand = buildCommandText(state);
           await ref.read(moveUseCaseProvider).execute(moveParameter);
           final commandResult = CommandResult.success(
             command: buildCommandText(state),
@@ -74,6 +78,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case DownloadCommandParameter():
           final downloadParameter = state as DownloadCommandParameter;
+          failedCommand = buildCommandText(state);
           final result = await ref
               .read(downloadUseCaseProvider)
               .execute(downloadParameter);
@@ -85,6 +90,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case ListCommandParameter():
           final listParameter = state as ListCommandParameter;
+          failedCommand = buildCommandText(state);
           final result =
               await ref.read(listUseCaseProvider).execute(listParameter);
           final commandResult = CommandResult.success(
@@ -95,6 +101,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case CopyCommandParameter():
           final copyParameter = state as CopyCommandParameter;
+          failedCommand = buildCommandText(state);
           final result =
               await ref.read(copyUseCaseProvider).execute(copyParameter);
           final commandResult = CommandResult.success(
@@ -105,6 +112,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case RemoveCommandParameter():
           final removeParameter = state as RemoveCommandParameter;
+          failedCommand = buildCommandText(state);
           final result =
               await ref.read(removeUseCaseProvider).execute(removeParameter);
           final commandResult = CommandResult.success(
@@ -116,6 +124,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         case CreateSignedUrlCommandParameter():
           final createSignedUrlParameter =
               state as CreateSignedUrlCommandParameter;
+          failedCommand = buildCommandText(state);
           final result = await ref
               .read(createSignedUrlUseCaseProvider)
               .execute(createSignedUrlParameter);
@@ -128,6 +137,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         case CreateSignedUrlsCommandParameter():
           final createSignedUrlsParameter =
               state as CreateSignedUrlsCommandParameter;
+          failedCommand = buildCommandText(state);
           final result = await ref
               .read(createSignedUrlsUseCaseProvider)
               .execute(createSignedUrlsParameter);
@@ -140,6 +150,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         case CreateSignedUploadUrlCommandParameter():
           final createSignedUploadUrlParameter =
               state as CreateSignedUploadUrlCommandParameter;
+          failedCommand = buildCommandText(state);
           final result = await ref
               .read(createSignedUploadUrlUseCaseProvider)
               .execute(createSignedUploadUrlParameter);
@@ -152,6 +163,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
         case UploadToSignedUrlCommandParameter():
           final uploadToSignedUrlParameter =
               state as UploadToSignedUrlCommandParameter;
+          failedCommand = buildCommandText(state);
           final result = await ref
               .read(uploadToSignedUrlUseCaseProvider)
               .execute(uploadToSignedUrlParameter);
@@ -163,6 +175,7 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
         case GetPublicUrlCommandParameter():
           final getPublicUrlParameter = state as GetPublicUrlCommandParameter;
+          failedCommand = buildCommandText(state);
           final result = ref
               .read(getPublicUrlUseCaseProvider)
               .execute(getPublicUrlParameter);
@@ -174,8 +187,9 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
           break;
       }
     } catch (e) {
+      logger.e('failed command: $failedCommand, error: $e');
       final commandResult = CommandResult.failure(
-        command: 'none',
+        command: failedCommand,
         message: e.toString(),
       );
       logStreamServiceNotifier.add(commandResult);
@@ -198,5 +212,9 @@ await _service.storage.from('${parameter.bucketName}').${parameter.methodName}(
       return '$key: \'$value\'';
     }
     return '$key: $value';
+  }
+  
+  void clearLog() {
+
   }
 }
