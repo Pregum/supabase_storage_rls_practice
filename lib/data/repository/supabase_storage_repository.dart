@@ -157,4 +157,15 @@ class SupabaseStorageRepository extends _$SupabaseStorageRepository {
         );
     return result;
   }
+
+  String getPublicUrl({
+    required String bucket,
+    required String path,
+    TransformOptions? options,
+  }) {
+    return _service.storage.from(bucket).getPublicUrl(
+          path,
+          transform: options,
+        );
+  }
 }
