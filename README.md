@@ -6,7 +6,7 @@
 
 機能としては以下のとおりです。
 
-* [x] .envファイルで設定されたSupabaseプロジェクトへのアクセス
+* [x] local.envファイルで設定されたSupabaseプロジェクトへのアクセス
 * [x] 接続されたSupabaseプロジェクトのAuthへサインイン機能
   * 現状<userA@example.com>, <userB@example.com>, anonymous, anon の４ユーザーでログイン可能です
 * [ ] バケットの操作
