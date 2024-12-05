@@ -19,7 +19,7 @@
 
 | 項目 | 内容 |
 | --- | --- |
-| fvm | // TODO: 記載する |
+| fvm | 3.2.1 |
 | Flutter | 3.24.5(.fvmrc参照) |
 | 開発エディタ | VSCode |
 | OS | MacOS |
