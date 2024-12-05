@@ -8,6 +8,7 @@ part 'command_log_stream_service.g.dart';
 
 @riverpod
 class CommandLogStreamService extends _$CommandLogStreamService {
+  // FIXME: 5要素までしかaddできないので原因を調査する
   final ReplaySubject<CommandResult> _streamController =
       ReplaySubject<CommandResult>();
 

@@ -95,7 +95,20 @@ class PlayGroundViewModel extends _$PlayGroundViewModel {
               await ref.read(listUseCaseProvider).execute(listParameter);
           final commandResult = CommandResult.success(
             command: buildCommandText(state),
-            message: '$result',
+            message: '${ result.map((e) {
+              final json = {
+                'id': e.id,
+                'bucketId': e.bucketId,
+                'buckets': e.buckets,
+                'createdAt': e.createdAt,
+                'lastAccessedAt': e.lastAccessedAt,
+                'metadata': e.metadata,
+                'name': e.name,
+                'owner': e.owner,
+                'updatedAt': e.updatedAt,
+              };
+              return json;
+            }) }',
           );
           logStreamServiceNotifier.add(commandResult);
           break;
