@@ -45,6 +45,10 @@ class LoginPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedUser = useState<UserRole>(UserRole.userA);
+    useEffect(() {
+      logger.i('LoginPage#useEffect');
+      return () {};
+    });
 
     return Scaffold(
       appBar: AppBar(
