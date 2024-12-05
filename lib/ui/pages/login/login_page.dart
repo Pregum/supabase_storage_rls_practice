@@ -80,13 +80,9 @@ class LoginPage extends HookConsumerWidget {
                     logger.i('result: $result');
                     if (context.mounted) {
                       logger.i('routes: ${context.router.routeData.path}');
-                      context.router.replaceAll(
-                        [
-                          const PlayGroundNavigationRoute(children: [
-                            PlayGroundRoute(),
-                          ]),
-                        ],
-                      );
+                      context.router.replaceAll([
+                        const PlayGroundRoute(),
+                      ]);
                     }
                   } catch (e) {
                     logger.e(e);
