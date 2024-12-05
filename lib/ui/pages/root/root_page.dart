@@ -12,23 +12,25 @@ class RootPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = ref.watch(
+        supabaseServiceProvider.select((value) => value.auth.currentUser));
+
     useEffect(() {
-      logger.i('RootPage#useEffect');
-      final currentUser = ref.read(
-          supabaseServiceProvider.select((value) => value.auth.currentUser));
-      if (currentUser == null) {
-        logger.i('ログインしていないのでログイン画面に遷移します');
-        context.router.replace(const LoginRoute());
-      } else {
-        logger.i('ログイン済みなのでホーム画面に遷移します');
-
-        context.router.replaceAll([
-          const PlayGroundRoute(),
-        ]);
-      }
-
-      return () {};
-    }, []);
+      Future.microtask(() {
+        if (currentUser == null) {
+          logger.i('ログインしていないのでログイン画面に遷移します');
+          if (context.mounted) {
+            context.router.replace(const LoginRoute());
+          }
+        } else {
+          logger.i('ログイン済みなのでホーム画面に遷移します');
+          if (context.mounted) {
+            context.router.navigate(const PlayGroundRoute());
+          }
+        }
+      });
+      return null;
+    }, [currentUser]);
 
     return const AutoRouter();
   }

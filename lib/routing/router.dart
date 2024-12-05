@@ -13,10 +13,9 @@ class AppRouter extends RootStackRouter {
           path: '/',
           initial: true,
           children: [
-            AutoRoute(page: PlayGroundRoute.page, path: PlayGroundRoute.name),
-            AutoRoute(page: SettingRoute.page, path: SettingRoute.name),
-            AutoRoute(
-                page: LoginRoute.page, path: LoginRoute.name, initial: true),
+            AutoRoute(page: PlayGroundRoute.page, path: 'play_ground'),
+            AutoRoute(page: SettingRoute.page, path: 'setting'),
+            AutoRoute(page: LoginRoute.page, path: 'login'),
           ],
         ),
         RedirectRoute(
