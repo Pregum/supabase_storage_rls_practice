@@ -29,6 +29,11 @@ class SupabaseAuthRepository extends _$SupabaseAuthRepository {
     );
   }
 
+  /// 匿名でサインインする
+  Future<AuthResponse> signInAnonymous() async {
+    return await _service.auth.signInAnonymously();
+  }
+
   /// ログアウトを行う
   Future<void> logout({SignOutScope scope = SignOutScope.local}) async {
     await _service.auth.signOut(scope: scope);
