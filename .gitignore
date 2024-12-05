@@ -143,3 +143,4 @@ app.*.symbols
 
 # env
 .env
+local.env
