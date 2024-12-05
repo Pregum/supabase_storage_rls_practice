@@ -34,7 +34,7 @@
 
 ## Supabase ローカル環境とFlutterプロジェクト設定手順
 
-このREADMEでは、Supabase CLIを使用したローカル環境のセットアップ方法を簡単に説明した後、FlutterプロジェクトでSupabaseを使用するための`.env`ファイルの設定方法を記載します。
+このREADMEでは、Supabase CLIを使用したローカル環境のセットアップ方法を簡単に説明した後、FlutterプロジェクトでSupabaseを使用するための`local.env`ファイルの設定方法を記載します。
 
 ### Supabase CLIのセットアップ
 
@@ -64,7 +64,7 @@ supabaseAnonKey="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.bbbbbbbbbbbbbbbbbbbbbbbbbb
 
 ### Flutterの起動
 
-launch.jsonに記載しているように、.envファイルを読み込み起動してください
+`launch.json`に記載しているように、`local.env`ファイルを読み込み起動してください
 
 すると、ログイン画面が表示されるはずですので、任意のアカウントでログインしてください
 
