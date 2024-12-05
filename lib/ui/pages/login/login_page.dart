@@ -6,18 +6,17 @@ import 'package:supabase_storage_rls_practice/config/logger.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_auth_repository.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:supabase_storage_rls_practice/routing/router.gr.dart';
+import 'package:supabase_storage_rls_practice/ui/pages/login/view_model/login_view_model.dart';
 
 enum UserRole {
   userA,
   userB,
-  guest,
   anonymous;
 
   String get name {
     return switch (this) {
       UserRole.userA => 'User A',
       UserRole.userB => 'User B',
-      UserRole.guest => 'Guest',
       UserRole.anonymous => 'Anonymous'
     };
   }
@@ -73,36 +72,26 @@ class LoginPage extends HookConsumerWidget {
                 child: const Text('ログイン'),
                 onPressed: () async {
                   logger.d('login start');
-                  final authRepository =
-                      ref.read(supabaseAuthRepositoryProvider.notifier);
-                  var user = selectedUser.value;
+                  final viewModel = ref.read(loginViewModelProvider.notifier);
 
                   try {
-                    final result = await authRepository.signInWithPassword(
-                        email: user.email, password: user.password);
+                    final result =
+                        await viewModel.signIn(userRole: selectedUser.value);
                     logger.i('result: $result');
                     if (context.mounted) {
                       logger.i('routes: ${context.router.routeData.path}');
-                      context.router.replaceAll([
-                        const PlayGroundNavigationRoute(children: [
-                          PlayGroundRoute(),
-                        ]),
-                      ]);
+                      context.router.replaceAll(
+                        [
+                          const PlayGroundNavigationRoute(children: [
+                            PlayGroundRoute(),
+                          ]),
+                        ],
+                      );
                     }
                   } catch (e) {
                     logger.e(e);
                   }
                   logger.d('login end');
-
-                  // useTryCatch(
-                  //   tryFunc: () async {
-                  //     await authRepository.signInWithPassword(
-                  //         email: user.email, password: user.password);
-                  //   },
-                  //   onError: (error, stackTrace) {
-                  //     print('ログインエラー: $error');
-                  //   },
-                  // );
                 },
               ),
             ],
