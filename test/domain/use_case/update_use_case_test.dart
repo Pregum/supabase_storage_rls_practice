@@ -59,6 +59,7 @@ void main() {
   // mockしている場合はbuildを実装すると例外が投げられないことを確認するテスト
   test('riverpod test(repository)', () {
     // ↓ がないとエラーになる
+    // ignore: invalid_use_of_visible_for_overriding_member
     when(() => mockRepository.build()).thenAnswer((_) => mockRepository);
 
     final repository = container.read(supabaseStorageRepositoryProvider);
