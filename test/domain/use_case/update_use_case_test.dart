@@ -37,7 +37,8 @@ void main() {
     container.dispose();
   });
 
-  test('riverpod non di test(service)', () {
+  // diしていない場合は例外が発生することを確認する
+  test('riverpod throw unimplemented test(service)', () {
     final cont = createContainer();
     try {
       cont.read(supabaseServiceProvider);
@@ -48,14 +49,14 @@ void main() {
     }
   });
 
-  /// サービスクラスはモックできることを確認する
+  /// サービスクラスがmockしたオブジェクトを参照していることを確認する
   test('riverpod test(service)', () {
     final service = container.read(supabaseServiceProvider);
     expect(service, isNotNull);
     expect(service, isA<MockSupabaseClient>());
   });
 
-  // mockしている場合はbuildを実装していないとエラーになる
+  // mockしている場合はbuildを実装すると例外が投げられないことを確認するテスト
   test('riverpod test(repository)', () {
     // ↓ がないとエラーになる
     when(() => mockRepository.build()).thenAnswer((_) => mockRepository);
@@ -64,6 +65,7 @@ void main() {
     expect(repository, isNotNull);
   });
 
+  // mockしている場合はbuildを実装していないと例外が投げられることを確認するテスト
   test('riverpod with mock test(repository)', () {
     // // ↓ がないとエラーになる
     // when(() => mockRepository.build()).thenAnswer((_) => mockRepository);
