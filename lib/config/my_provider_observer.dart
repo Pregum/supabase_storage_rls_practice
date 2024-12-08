@@ -1,6 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:supabase_storage_rls_practice/config/logger.dart';
 
+/// Providerの状態変化を監視するクラス
+/// https://riverpod.dev/docs/essentials/provider_observer
 class MyProviderObserver extends ProviderObserver {
   @override
   void didAddProvider(
