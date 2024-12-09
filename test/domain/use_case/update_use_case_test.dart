@@ -22,7 +22,7 @@ void main() {
   setUpAll(() {
     TestWidgetsFlutterBinding.ensureInitialized();
     registerFallbackValue(Uint8List(0)); // 空の Uint8List を登録
-    registerFallbackValue(FakeFileOptions()); // 空の Uint8List を登録
+    registerFallbackValue(FakeFileOptions()); // FileOptionsを登録
   });
 
   setUp(() {
