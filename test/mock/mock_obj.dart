@@ -3,8 +3,11 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
 class MockSupabaseClient extends Mock implements SupabaseClient {}
+
+class MockStorageFileApi extends Mock implements StorageFileApi {}
+
+class MockSupabaseStorageClient extends Mock implements SupabaseStorageClient {}
 
 /// [SupabaseStorageRepository] のモッククラス
 /// 継承するクラスは[_$SupabaseStorageRepository] と同じ型である必要がある

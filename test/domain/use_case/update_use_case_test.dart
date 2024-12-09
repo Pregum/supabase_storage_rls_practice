@@ -1,35 +1,40 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:supabase_storage_rls_practice/config/logger.dart';
-import 'package:supabase_storage_rls_practice/config/my_provider_observer.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:flutter/services.dart';
+import 'package:supabase_storage_rls_practice/domain/model/bucket_kind.dart';
+import 'package:supabase_storage_rls_practice/domain/model/storage_command_parameter.dart';
+import 'package:supabase_storage_rls_practice/domain/use_case/update_use_case.dart';
+import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 
 import '../../mock/mock_obj.dart';
 import '../../utils/create_container.dart';
 
-class MockSupabaseStorageRepository extends Mock
-    implements SupabaseStorageRepository {}
+class FakeFileOptions extends Fake implements FileOptions {}
 
 void main() {
-  late SupabaseStorageRepositoryMock mockRepository;
   late ProviderContainer container;
+  late MockSupabaseClient mockSupabaseClient;
+  late MockStorageFileApi mockStorageFileApi;
+  late MockSupabaseStorageClient mockSupabaseStorageClient;
 
   // Uint8List のフェイク値を登録
   setUpAll(() {
+    TestWidgetsFlutterBinding.ensureInitialized();
     registerFallbackValue(Uint8List(0)); // 空の Uint8List を登録
+    registerFallbackValue(FakeFileOptions()); // 空の Uint8List を登録
   });
 
   setUp(() {
-    // Initialize the mock repository
-    mockRepository = SupabaseStorageRepositoryMock();
-
     // Override the repository provider
+    mockSupabaseClient = MockSupabaseClient();
+    mockStorageFileApi = MockStorageFileApi();
+    mockSupabaseStorageClient = MockSupabaseStorageClient();
     container = createContainer(overrides: [
-      supabaseServiceProvider.overrideWithValue(MockSupabaseClient()),
-      supabaseStorageRepositoryProvider.overrideWith(() => mockRepository),
+      supabaseServiceProvider.overrideWithValue(mockSupabaseClient),
     ]);
   });
 
@@ -37,55 +42,38 @@ void main() {
     container.dispose();
   });
 
-  // diしていない場合は例外が発生することを確認する
-  test('riverpod throw unimplemented test(service)', () {
-    final cont = createContainer();
-    try {
-      cont.read(supabaseServiceProvider);
-      fail('エラーが発生しない');
-    } catch (e) {
-      logger.e('error: $e');
-      expect(e, isA<UnimplementedError>());
-    }
-  });
-
-  /// サービスクラスがmockしたオブジェクトを参照していることを確認する
-  test('riverpod test(service)', () {
-    final service = container.read(supabaseServiceProvider);
-    expect(service, isNotNull);
-    expect(service, isA<MockSupabaseClient>());
-  });
-
-  // mockしている場合はbuildを実装すると例外が投げられないことを確認するテスト
-  test('riverpod test(repository)', () {
-    // ↓ がないとエラーになる
-    // ignore: invalid_use_of_visible_for_overriding_member
-    when(() => mockRepository.build()).thenAnswer((_) => mockRepository);
-
+  // updateUseCase のテスト
+  test('updateUseCase', () async {
+    // Given
     final repository = container.read(supabaseStorageRepositoryProvider);
-    expect(repository, isNotNull);
-  });
+    final useCase = container.read(updateUseCaseProvider);
 
-  // mockしている場合はbuildを実装していないと例外が投げられることを確認するテスト
-  test('riverpod with mock test(repository)', () {
-    // // ↓ がないとエラーになる
-    // when(() => mockRepository.build()).thenAnswer((_) => mockRepository);
+    when(() => mockSupabaseClient.storage)
+        .thenReturn(mockSupabaseStorageClient);
 
-    // 例外発生を確認する
-    expect(
-      () => container.read(supabaseStorageRepositoryProvider),
-      throwsA((e) => e is TypeError),
+    when(() => mockSupabaseStorageClient.from(any()))
+        .thenReturn(mockStorageFileApi);
+
+    when(() => mockStorageFileApi.updateBinary(any(), any(),
+        fileOptions: any(named: 'fileOptions'))).thenAnswer((_) async {
+      return '';
+    });
+
+    final parameter = UpdateCommandParameter(
+      bucketKind: BucketKind.a,
+      destFilePath: 'uuid/png1.png',
+      sourceFilePath: Assets.images.png.png1.path,
+      isUpsertEnabled: true,
     );
-  });
 
-  // モックでない場合はbuildメソッドが実装されているのでエラーにならないことを確認する
-  test('riverpod without mock test(repository)', () {
-    final cont = createContainer(observers: [
-      MyProviderObserver()
-    ], overrides: [
-      supabaseServiceProvider.overrideWithValue(MockSupabaseClient()),
-    ]);
-    final repository = cont.read(supabaseStorageRepositoryProvider);
-    expect(repository, isNotNull);
+    // When
+    try {
+      await useCase.execute(parameter);
+    } catch (e, s) {
+      fail('エラーが発生しました: $e, $s');
+    }
+
+    // storageRepositoryが呼ばれたか確認
+    expect(repository, isA<SupabaseStorageRepository>());
   });
 }
