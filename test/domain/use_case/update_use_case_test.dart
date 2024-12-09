@@ -73,5 +73,9 @@ void main() {
     // Then
     // storageRepositoryが呼ばれたか確認
     expect(repository, isA<SupabaseStorageRepository>());
+    verify(() => mockSupabaseClient.storage
+            .from(any())
+            .updateBinary(any(), any(), fileOptions: any(named: 'fileOptions')))
+        .called(1);
   });
 }
