@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:supabase_storage_rls_practice/data/repository/supabase_storage_repository.dart';
 import 'package:supabase_storage_rls_practice/data/service/supabase_service.dart';
 import 'package:flutter/services.dart';
@@ -12,8 +11,6 @@ import 'package:supabase_storage_rls_practice/gen/assets.gen.dart';
 
 import '../../mock/mock_obj.dart';
 import '../../utils/create_container.dart';
-
-class FakeFileOptions extends Fake implements FileOptions {}
 
 void main() {
   late ProviderContainer container;
@@ -73,6 +70,7 @@ void main() {
       fail('エラーが発生しました: $e, $s');
     }
 
+    // Then
     // storageRepositoryが呼ばれたか確認
     expect(repository, isA<SupabaseStorageRepository>());
   });

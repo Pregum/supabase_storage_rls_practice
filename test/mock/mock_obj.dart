@@ -9,6 +9,8 @@ class MockStorageFileApi extends Mock implements StorageFileApi {}
 
 class MockSupabaseStorageClient extends Mock implements SupabaseStorageClient {}
 
+class FakeFileOptions extends Fake implements FileOptions {}
+
 /// [SupabaseStorageRepository] のモッククラス
 /// 継承するクラスは[_$SupabaseStorageRepository] と同じ型である必要がある
 ///
